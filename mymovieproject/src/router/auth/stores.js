@@ -1,4 +1,5 @@
-import {getCurrentUser} from '../api'
+import {getCurrentUser,logout} from '../api'
+import {getToken} from '../utils'
 
 const state = {
   token:null,//token的值
@@ -6,7 +7,7 @@ const state = {
 }
 
 const getters = {
-  
+  userInfo:state=>state.userInfo//一定要是这种写法
 }
 
 const mutations = {

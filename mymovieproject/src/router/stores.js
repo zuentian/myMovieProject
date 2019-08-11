@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import createLogger from 'vuex/dist/logger'
 import { stores as auth } from './auth'
 
-import { filterAsyncRouter } from '../components/functions'
+import { filterAsyncRouter } from './functions'
 
 Vue.use(Vuex)
 
