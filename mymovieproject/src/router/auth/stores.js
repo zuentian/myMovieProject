@@ -28,7 +28,7 @@ const actions = {
     })
   },
   AC_Redirect2Login({dispatch,commit},targetUrl){
-      return dispatch('AC_LOGOUT').then(response=>{
+      return dispatch('AC_LOGOUT').then(response=>{  
       window.location.href = `#/login?targetUrl=${targetUrl?encodeURIComponent(targetUrl):encodeURIComponent(window.location.href)}`
       window.location.reload()
     })
@@ -36,6 +36,8 @@ const actions = {
   AC_LOGOUT({dispatch,commit}){
       return logout().then(response=>{
       commit("CLEAR_USER_INFO");
+    }).catch(err => {
+      //因为会调http-interceptor.js里的reject(res),导致有异常没有被处理，所以这儿要加catch
     })
   }
 }

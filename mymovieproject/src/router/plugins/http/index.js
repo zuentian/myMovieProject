@@ -6,7 +6,7 @@ const plugin = {
     Vue.use(VueResource)
     const interceptor = new HttpInterceptor(Vue, options)
     Vue.http.interceptors.push(interceptor)
-    Vue.http.options.root = options.HOST || ''
+    Vue.http.options.root = options.HOST || ''//这个用到服务器上部署应该非常重要
   }
 }
 

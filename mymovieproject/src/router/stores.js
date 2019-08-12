@@ -27,7 +27,7 @@ const actions = {
     AC_GenerateRoutes({commit},user){
         return new Promise(resolve=>{
             const accessedRouters=filterAsyncRouter(asyncRouterMap,user)
-            //commit('SET_ROUTERS',accessedRouters)
+            commit('SET_ROUTERS',accessedRouters)
             resolve(accessedRouters)
         })
     }

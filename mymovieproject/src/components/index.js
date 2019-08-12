@@ -1,8 +1,9 @@
+
+export { default as SvgIcon } from './svg-icon'
 import Vue from 'vue'
 import { store, router } from '../router'
 import NProgress from 'nprogress'
 import * as plugins from '../router/plugins'
-
 
 const configRouter = (options) => {
 
@@ -19,6 +20,7 @@ const configRouter = (options) => {
              router.addRoutes(routers)
              next({...to, replace: true})
            }).catch(err => {
+             console.log("AC_Redirect2Login", err);
              store.dispatch('AC_Redirect2Login')
            })
        } else {// 存在说明登录正常跳转
@@ -50,3 +52,5 @@ export const config = () => {
       router
     }
   }
+
+
