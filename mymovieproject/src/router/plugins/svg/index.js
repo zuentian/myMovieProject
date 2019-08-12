@@ -1,5 +1,5 @@
 
-import { SvgIcon } from '../../../components/'
+import { SvgIcon } from '../../../components/svg-icon/index'
 import generateIconsView from '../../../components/views/svg-icons/generateIconsView.js'
 
 const plugin = {
