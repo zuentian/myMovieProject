@@ -6,23 +6,31 @@ const handleError = function(err) {
 
 const extractData = function(res){
   return new Promise((resolve, reject)=>{
-    console.log("res1111",res);
     let {
       status,
-      data: {
-        code,
-        data,
-        msg
-      }
+      data,
     } = res
-    console.log("res",res,status,data,code);
-    if(status !== 200) {
-      reject(res)
-    } else if(code!== 200){
-      reject(res.data)
-    }else{
+    if(data==null){//此处防止后端没有返回东西导致报错
       resolve(data)
+    }else{
+      let {
+        status,
+        data: {
+          code,
+          data,
+          msg
+        }
+      } = res
+      if(status !== 200) {
+        reject(res)
+      } else if(code!== 200){
+        reject(res.data)
+      }else{
+        resolve(data)
+      }
     }
+    
+    
   })
 }
 

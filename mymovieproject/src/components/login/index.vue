@@ -76,6 +76,7 @@
 import md5 from 'js-md5';
 
 export default {
+  inject: ['reload'],
   name: 'login',
   data () {
     return {
@@ -121,7 +122,7 @@ export default {
       }).then(res => {
         this.$router.push({ path: '/' })
       }).catch((err) => {
-        this.$store.commit('SHOW_ERROR_TOAST', err.body.message || err.body)        
+        this.$store.commit('SHOW_ERROR_TOAST', err.data.message || err.data)        
       }).finally(() => {
         this.loading = false
       })
@@ -139,7 +140,8 @@ export default {
           password: this.loginForm.passwordRegister
         }).then(res => {
           this.$notify({title: '注册成功',message: '',type: 'success'});
-          //this.$router.push({ path: '/login' })
+          Object.assign(this.$data, this.$options.data());
+          this.reload() ;//这种重新刷新页面的方式比较快速，window.reload()和router.go(0)的刷新会让页面闪烁
         }).catch((err) => {
           this.loginForm.passwordRegister="";
           this.loginForm.passwordRegister2="";
