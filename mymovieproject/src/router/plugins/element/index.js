@@ -1,4 +1,5 @@
 import Element from 'element-ui'
+
 const plugin = {
   install(Vue, options) {
     Vue.use(Element, {

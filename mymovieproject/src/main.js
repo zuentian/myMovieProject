@@ -9,6 +9,12 @@ import FastClick from 'fastclick'
 import {sync} from 'vuex-router-sync'
 import { config } from 'components'//这个路径在webpack.base.conf.js里设置了，和@意思一样，其他的就不这么设置
 
+//import ElementUI from 'element-ui'
+//import 'element-ui/lib/theme-chalk/index.css';
+//Vue.use(ElementUI);
+
+import '@/assets/styles/index.scss'
+
 Vue.config.productionTip = false
 
 

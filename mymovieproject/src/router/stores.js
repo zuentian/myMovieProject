@@ -38,6 +38,13 @@ const mutations = {
         //state.addRouters = routers
         //state.routers = constRouterMap.concat(routers)
     },
+    SHOW_ERROR_TOAST(state, message) {
+    Vue.modal.toast({
+        showClose: true,
+        message: message,
+        type: 'error'
+    })
+    },
 }
 export const store = new Vuex.Store({
 

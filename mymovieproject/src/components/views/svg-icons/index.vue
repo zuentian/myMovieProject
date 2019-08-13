@@ -22,7 +22,7 @@
 
 <script>
 import icons from './generateIconsView'
-import { clipboard } from '../../utils'
+import { clipboard } from '../../../router/utils'
 
 export default {
   name: 'icons',

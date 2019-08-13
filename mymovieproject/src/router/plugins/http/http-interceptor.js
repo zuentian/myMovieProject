@@ -6,6 +6,7 @@ const handleError = function(err) {
 
 const extractData = function(res){
   return new Promise((resolve, reject)=>{
+    console.log("res1111",res);
     let {
       status,
       data: {
@@ -14,6 +15,7 @@ const extractData = function(res){
         msg
       }
     } = res
+    console.log("res",res,status,data,code);
     if(status !== 200) {
       reject(res)
     } else if(code!== 200){

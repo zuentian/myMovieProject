@@ -1,9 +1,10 @@
 
-export { default as SvgIcon } from './svg-icon'
 import Vue from 'vue'
 import { store, router } from '../router'
 import NProgress from 'nprogress'
 import * as plugins from '../router/plugins'
+
+
 
 const configRouter = (options) => {
 
@@ -38,6 +39,7 @@ const configRouter = (options) => {
 
 const configPlugin =(options)=>{
   Object.keys(plugins).forEach(key=>{
+    //console.log("plugins[key]",plugins[key],options)
     Vue.use(plugins[key],options)//加载一些公共的依赖
   })
 }

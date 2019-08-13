@@ -1,4 +1,4 @@
-import {getCurrentUser,logout} from '../api'
+import {getCurrentUser,logout,register} from '../api'
 import {getToken} from '../utils'
 
 const state = {
@@ -38,6 +38,14 @@ const actions = {
       commit("CLEAR_USER_INFO");
     }).catch(err => {
       //因为会调http-interceptor.js里的reject(res),导致有异常没有被处理，所以这儿要加catch
+    })
+  },
+  AC_REGISTER({dispatch,commit},payload){
+    return register(payload).then(response => {
+      console.log("response",response);
+      window.location.reload()
+    }).catch(err=>{
+      console.log("err",err);
     })
   }
 }
