@@ -17,8 +17,9 @@
 
       <el-dropdown class="avatar-container right-menu-item">
         <div v-if="userInfo" class="avatar-wrapper">
-          <img class="user-avatar" :src="userInfo.avatar | compressImage(80,80)">
-          <span>{{userInfo.name}}</span>
+          <!-- <img class="user-avatar" :src="userInfo.avatar | compressImage(80,80)"> -->
+          <img class="user-avatar" :src="userInfo.userNameBak">
+          <span>{{userInfo.userId}}</span>
           <i class="el-icon-arrow-down"></i>
         </div>
         <el-dropdown-menu slot="dropdown">
@@ -58,6 +59,9 @@ export default {
         location.reload()// In order to re-instantiate the vue-router object to avoid bugs
       })
     }
+  },
+  mounted(){
+    console.log("退出页面*******",this.userInfo);
   }
 }
 </script>

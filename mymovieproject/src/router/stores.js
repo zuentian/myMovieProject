@@ -5,7 +5,7 @@ import { stores as auth } from './auth'
 
 import { filterAsyncRouter } from './functions'
 import{constRouterMap,asyncRouterMap } from './routes'
-
+import { app, errorLog,tagsView } from './utils'
 Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'//如果是生产环境就不用显示debug
@@ -19,9 +19,12 @@ const debug = process.env.NODE_ENV !== 'production'//如果是生产环境就不
 const state = {
     routers:constRouterMap,
     addRouters:[],
+    loading:false,
 }
 const getters = {
-    
+    addRouters:state=>state.addRouters,
+    routers:state=>state.routers,
+    loading:state=>state.loading,
 }
 
 const actions = {
@@ -69,6 +72,9 @@ export const store = new Vuex.Store({
         //Vuex 允许我们将 store 分割成模块（module）。
         //每个模块拥有自己的 state、mutation、action、getter、甚至是嵌套子模块——从上至下进行同样方式的分割
         auth,
+        app,
+        errorLog,
+        tagsView,
     },
     //插件作用通常是用来监听每次 mutation 的变化，来做一些事情。
     plugins:debug?[createLogger()]:[]//为了打印日志

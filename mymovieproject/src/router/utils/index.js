@@ -1,3 +1,5 @@
 export * from './auth'
 export * from './clipboard'
 export * from './app'
+export * from './errorLog'
+export * from './tagsView'
