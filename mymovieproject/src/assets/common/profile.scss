@@ -1,0 +1,288 @@
+@mixin teacherName () {
+    position: absolute;
+    margin-top: .5rem;
+    bottom: 0;
+    height: 2rem;
+    width: 7.2rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #FFF;
+    background: #000;
+    @include text-overflow();
+    @include opacity(0.5);
+}
+
+.profile {
+    @include clearfix();
+    border-bottom: 1px solid $gray-border;
+    padding: 0;
+    color: #FFF;
+    background: url(/src/resource/img/house.png) center bottom no-repeat;
+    background-color: $brand-primary;
+    .course-detail-info {
+        font-size: 1.4rem;
+        line-height: 2.5rem;
+        text-indent: 1.5rem;
+        .course-detail-title {
+            font-weight: bold;
+            font-size: 1.7rem;
+            margin-top: 2rem;
+        }
+    }
+    .price-detail {
+        border-top: 0.05rem solid #ece2fc;
+        padding-top: 1rem;
+        margin: 1rem;
+        text-align: right;
+        font-size: 1.8rem;
+        > span {
+            &:first-child {
+                font-size: 1.2rem;
+            }
+            &:last-child {
+                color: #FFFC03;
+            }
+        }
+    }
+}
+.my-profile{
+    @include clearfix();
+    padding: 1rem 0;
+    .user-portrait {
+        position: relative;
+        width: 19rem;
+        height: 20rem;
+        margin: 0 auto;
+        > img {
+            padding-top: 1rem;
+            vertical-align: middle;
+        }
+        .user-pic {
+            position: absolute;
+            width: 4.4rem;
+            height: 4.4rem;
+            top: 77%;
+            left: 70%;
+            background-color: #FFF;
+            border: .1rem solid $gray-border;
+            border-radius: 50%;
+            > input[type='file'] {
+                z-index: 2;
+                opacity: 0;
+                width: 4.5rem;
+                height: 4.5rem;
+                position: absolute;
+                @include center();
+            }
+            > span {
+                color: $brand-primary;
+                z-index: 1;
+                position: absolute;
+                @include center();
+            }
+        }
+    }
+    .user-info {
+        font-size: 1rem;
+        color: #777;
+        text-align: center;
+        > p {
+            font-size: 3.1rem;
+            color: #4a4a4a;
+        }
+    }
+}
+.teacher-info-list {
+    margin: 1rem;
+    padding: 1rem;
+    border: .1rem solid $gray-border;
+    @include flex-container();
+    .teacher-photo {
+        width: 7rem;
+        margin-right: 1rem;
+        > img {
+            vertical-align: bottom;
+            border: .1rem solid $gray-border;
+        }
+    }
+    .teacher-info {
+        font-size: 1.2rem;
+        @include flex(1);
+        color: #b0b0b0;
+        .teacher-name {
+            color: #4a4a4a;
+            font-size: 1.5rem;
+        }
+    }
+}
+.video-img {
+    text-align: right;
+    display: inline-block;
+    background: url(/src/resource/img/play-newsstand-logo.png) no-repeat center center;
+    width: 40px;
+    height: 50px;
+    background-size: contain;
+}
+.teacher-video {
+    margin-left: 1.5rem;
+    padding-top: 2rem;
+    text-align: right;
+    > span {
+        color: $brand-primary;
+        font-size: 4.5rem;
+    }
+    .open {
+        margin-top: -1.5rem;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        color: $brand-primary;
+    }
+}
+.course-list-info {
+    @include clearfix();
+    padding: 1rem 0;
+    @include flex-container();
+
+    .teacher-photo {
+        position: relative;
+        font-size: 1.4rem;
+        width: 7.5rem;
+        height: 9.2rem;
+        text-align: center;
+        margin-right: 1rem;
+        > img {
+            vertical-align: bottom;
+            border: .1rem solid $gray-border;
+        }
+        > p {
+            @include teacherName;
+        }
+    }
+    .course-info {
+        @include flex(1);
+        font-size: 1.2rem;
+        line-height: 2rem;
+        color: #b0b0b0;
+        .course-title {
+            color: #4a4a4a;
+            font-size: 1.4rem;
+        }
+        span {
+            margin-right: 1rem;
+        }
+        .addr {
+            font-size: 1rem;
+        }
+    }
+    .price-info {
+        width: 6rem;
+        text-align: right;
+        font-size: 1.5rem;
+        color: $brand-primary;
+        position: relative;
+        .price {
+            white-space:nowrap;
+        }
+        .price-title{
+            font-size: 1.2rem;
+            color: #4a4a4a;;
+        }
+        .left-info-new {
+            color: #FFF;
+            display: inline-block;
+            width: 3.9rem;
+            height: 3.9rem;
+            font-size: 1rem;
+            line-height: 4rem;
+            text-align: center;
+            background-color: $light-green;
+            border: 0.05rem solid $gray-border;
+            border-radius: 0.4rem;
+            position: absolute;
+            top: 5rem;
+            right: 0;
+        }
+        .left-info {
+            color: #FFF;
+            display: inline-block;
+            width: 3.9rem;
+            //height: 3.9rem;
+            height: 3.4rem;
+            font-size: 1rem;
+            //line-height: 4rem;
+            padding-top: 0.5rem;
+            text-align: center;
+            background-color: $red;
+            border: 0.05rem solid $gray-border;
+            border-radius: 0.4rem;
+            position: absolute;
+            top: 5rem;
+            right: 0;
+        }
+        .left-info-hot {
+            color: #FFF;
+            display: inline-block;
+            width: 3.9rem;
+            height: 3.9rem;
+            font-size: 1rem;
+            line-height: 4rem;
+            text-align: center;
+            background-color: $orange;
+            border: 0.05rem solid $gray-border;
+            border-radius: 0.4rem;
+            position: absolute;
+            top: 5rem;
+            right: 0;
+        }
+        .left-info-over {
+            color: #FFF;
+            display: inline-block;
+            width: 3.9rem;
+            height: 3.9rem;
+            font-size: 1rem;
+            line-height: 4rem;
+            text-align: center;
+            background-color: #999;
+            border: 0.05rem solid $gray-border;
+            border-radius: 0.4rem;
+            position: absolute;
+            top: 5rem;
+            right: 0;
+        }
+    }
+}
+.lesson-bar {
+    position: relative;
+    .whole-bar {
+        height: .2rem;
+        background-color: $gray-light;
+    }
+    .finish-bar {
+        background-color: $brand-primary;
+        position: absolute;
+        top: 0;
+        height: .2rem;
+        width: 0;
+    }
+}
+.lesson-info {
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+    color: #8e9091;
+    margin-top: 1rem;
+    .lesson-status {
+        float: right;
+        width: 5.5rem;
+        height: 2.2rem;
+        text-align: center;
+        background-color:$brand-primary;
+        color: #FFF;
+        border-radius: .4rem;
+        > a {
+            color: #FFF;
+        }
+    }
+    .lesson-finished {
+        background-color: $brand-text;
+    }
+}

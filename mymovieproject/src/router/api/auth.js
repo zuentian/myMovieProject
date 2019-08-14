@@ -12,3 +12,7 @@ export function logout(params){
 export function register(params){
   return Vue.http.post('/api/LoginService/register',params||{})
 }
+
+export function login(params){
+  return Vue.http.post('/api/LoginService/login',params||{})
+}

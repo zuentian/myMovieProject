@@ -1,0 +1,123 @@
+.blockquote-reverse,
+blockquote.pull-right {
+  padding-right:100px;
+  padding-left: 0;
+  border-right: 5px solid $blockquote-border-color;
+  border-left: 0;
+  text-align: right;
+
+  // Account for citation
+  footer,
+  small,
+  .small {
+    &:before { content: ''; }
+    &:after {
+      content: '\00A0 \2014'; // nbsp, em dash
+    }
+  }
+}
+.btn {
+    border-radius: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+.btn-primary {
+	background: $brand-primary;
+	border: 1px solid $brand-primary;
+    &:hover {
+        background: $brand-hover;
+        border: 1px solid $brand;
+    }
+}
+.btn-blue-light {
+	background: #fff;
+	border: 1px solid $brand;
+	color: $brand;
+    &:hover {
+        color: $brand;
+        background: #fbfbfb;
+        border-color: $brand;
+    }
+}
+
+a {
+    color: #1c9cdd;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.dropdown-menu {
+    padding: 0;
+    margin-bottom: 10px;
+    > li {
+        > a {
+            padding: 6px 3px 6px 8px;
+            &:hover {
+                border-radius: 4px;
+            }
+        }
+    }
+}
+.dropdown-menu > .active > a, 
+.dropdown-menu > .active > a:hover, 
+.dropdown-menu > .active > a:focus {
+    background: $brand-primary;
+}
+
+@media print {
+    body {
+        width: 100%!important; 
+    }
+    html,
+    body,
+    div {
+        height: inherit;
+        overflow: hidden!important;
+    }
+    .modal-dialog {
+        margin: 0 auto;
+    }
+    .modal-open  {
+        .modal-footer,
+        .modal-body,
+        .modal-header {
+            display: none;
+        }
+        .refund,
+        .modal-print {
+            display: block;
+        }
+    }
+    .flex-control,
+    .list-wrapper,
+    .not-support-browser,
+    .nav-menu,
+    .pager-wrapper,
+    .d-grid,
+    .table-out,
+    .crumbs,
+    .operate,
+    .top-nav {
+        display: none;
+        overflow: hidden;
+    }
+}
+
+input[type="text"] {
+    -webkit-appearance: none;
+}
+
+body {
+    .d-grid {
+        overflow: visible;
+        border-top: none;
+        .grid-body-wrapper,
+        .grid-header-wrapper {
+            overflow: visible;
+        }
+        .grid-header {
+            border-top: 3px solid #46AEF7
+        }
+    }
+}

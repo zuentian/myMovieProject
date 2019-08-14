@@ -1,0 +1,94 @@
+/**
+ * @file 颜色
+ * @author lixioabin
+ */
+
+// 蓝色主色
+$brand-primary: #46AEF7;
+$brand-primary-light: rgba(70,174,247,0.5);
+// m 站 边框默认颜色
+$gray-border: #F2F2F2;
+// PC端 边框颜色
+$border-grey: #e0e0e0;
+
+// 背景色  #fafafa
+$brand-base: #fafafa;
+// 深色分块  #f6f7f9
+$brand-dark: #f6f7f9;
+
+
+$side-bar: #364150;
+$top-nav: #2b3643;
+
+//未选中浅色
+$bar-nav: #393D41;
+//选中 深色
+$bar-nav-active: #2B2F32;
+
+// 信息色
+$brand-info: #6287D5;
+$brand-info-light: #ABC0E9;
+$brand-info-lighter: #EDF3FD;
+
+$brand-success: #56B02A;
+$brand-success-light: #91C876;
+$brand-success-lighter: #E7FFDB;
+
+$brand-error: #F95710;
+$brand-error-light: #E7B69F;
+$brand-error-lighter: #FDE3D7;
+
+$brand: #1c9cdd;
+$brand-shallow: #a1d4ee;
+$brand-hover: #51b5e8;
+
+
+// 灰度
+$gray-darker: #555;
+
+$gray-999: #999;
+
+$gray-dark: #888;
+
+$gray-base: #989898;
+
+$gray-light: #CCC;
+
+$gray-lighter: #F8F8F8;
+// 文本颜色（暗灰色）
+$brand-text: #b0b0b0;
+
+$brand-text-light: #6D6D6D;
+
+$brand-text-lighter: #9D9D9D;
+
+
+// 背景色
+$bg-color: #f2f4f5;
+
+$danger: #FFCCCC;
+
+// 文本色
+$text-color: $gray-darker;
+
+// 链接色
+$link-color: $text-color;
+
+// 链接悬浮色
+$link-color-hover: darken($link-color, 5%);
+
+
+// 常用蓝色
+$light-blue: #19c0fe;
+
+// 常用橙色
+$orange: #ff9933;
+
+// 草绿色
+$light-green: #70BF00;
+
+// 鲜红色
+$red: #FF0000;
+
+// 灰色
+$gray: #f6f6f6;

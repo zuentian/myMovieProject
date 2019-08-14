@@ -6,27 +6,28 @@ const handleError = function(err) {
 
 const extractData = function(res){
   return new Promise((resolve, reject)=>{
+    console.log("http拦截器之前的返回",res);
     let {
       status,
       data,
+      bodyText,
     } = res
-    if(data==null){//此处防止后端没有返回东西导致报错
-      resolve(data)
+    if(data==null){//此处防止后端没有返回东西导致报错,如果data为空，就取bodyText里的内容
+      resolve(bodyText)
     }else{
       let {
         status,
         data: {
           code,
-          data,
           msg
         }
       } = res
       if(status !== 200) {
         reject(res)
-      } else if(code!== 200){
-        reject(res.data)
-      }else{
+      } else{
+        console.log("http拦截器之后的返回",data);
         resolve(data)
+        
       }
     }
     

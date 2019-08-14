@@ -4,6 +4,7 @@ import createLogger from 'vuex/dist/logger'
 import { stores as auth } from './auth'
 
 import { filterAsyncRouter } from './functions'
+import{constRouterMap,asyncRouterMap } from './routes'
 
 Vue.use(Vuex)
 
@@ -16,7 +17,8 @@ const debug = process.env.NODE_ENV !== 'production'//如果是生产环境就不
 // state 改变以后,我们的页面会state 获取数据，页面发生了变化。
 
 const state = {
-
+    routers:constRouterMap,
+    addRouters:[],
 }
 const getters = {
     
@@ -24,19 +26,21 @@ const getters = {
 
 const actions = {
 
-    AC_GenerateRoutes({commit},user){
+    AC_GenerateRoutes({commit},user){//此处开始涉及权限路由，感觉很难
         return new Promise(resolve=>{
             const accessedRouters=filterAsyncRouter(asyncRouterMap,user)
             commit('SET_ROUTERS',accessedRouters)
             resolve(accessedRouters)
+            console.log("AC_GenerateRoutes accessedRouters", accessedRouters);
         })
     }
 
 }
 const mutations = {
     SET_ROUTERS: (state, routers) => {
-        //state.addRouters = routers
-        //state.routers = constRouterMap.concat(routers)
+        console.log("AC_GenerateRoutes SET_ROUTERS",state,routers,constRouterMap);
+        state.addRouters = routers
+        state.routers = constRouterMap.concat(routers)
     },
     SHOW_ERROR_TOAST(state, message) {
     Vue.modal.toast({

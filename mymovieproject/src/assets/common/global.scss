@@ -1,0 +1,136 @@
+/**
+ * @file global
+ * @author lixioabin
+ */
+
+@import './scroll';
+html {
+    font-size: 62.5%;
+   	height: 100%;
+   	@extend .thin-scroll;
+}
+
+body {
+	// font-family: "tahoma", "arial","Hiragino Sans GB","\5b8b\4f53", "sans-serif";
+	font: 12px/1.5 'Hiragino GB',tahoma,arial,'Hiragino Sans GB',\5FAE\8F6F\96C5\9ED1,sans-serif;
+    // font-family: "Hiragino Sans GB","Helvetica Neue","微软雅黑","Microsoft Yahei", Helvetica,Arial,sans-serif;
+    color: #333;
+    font-size: 14px;
+    display: block;
+    max-height: 100%;
+    background: $brand-base;
+    -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+    -ms-overflow-style: scrollbar;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+label {
+	font-weight: normal;
+}
+
+.red {
+	color: red;
+}
+.brand {
+	color: $brand;
+}
+.orange {
+	color: $orange;
+}
+.pointer {
+	cursor: pointer;
+}
+.gray {
+	color: $gray-999;
+}
+.text-danger {
+	color: #c7254e;
+}
+
+.text-special {
+	color: #56c5ba;
+}
+.none-list {
+	text-align: center;
+	padding: 3rem;
+	color: #999;
+	min-width: 98px;
+	min-height: 98px;
+	&:before {
+		background: url('~assets/img/none-data-bg.png') no-repeat;
+		background-size: contain;
+		margin: 30px auto;
+		width: 98px;
+		height: 98px;
+		display: block;
+		content: '　';
+	}
+}
+.badge {
+	background: $brand;
+	border-radius: 10px;
+	padding: 2px 10px;
+	color: #FFF;
+	font-size: 14px;
+}
+
+.crumbs {
+	height: 30px;
+	line-height: 30px !important;
+	padding: 5px;
+	background-color: $brand-dark;
+	color: $gray-dark;
+	font-size: 16px;
+	border-bottom: 1px solid $border-grey;
+	li {
+		display: inline-block;
+		> a {
+			color: $gray-dark;
+		}
+	}
+}
+.select-btn {
+	.btn-content {
+		max-width: 116px;
+		display: inline-block;
+		vertical-align: middle;
+		@include text-overflow;
+	}
+}
+
+.circle-image {
+	border-radius: 50%;
+}
+.circle-dot{    
+	display: inline-block;
+	width:0.5rem;
+	height:0.5rem;
+	border-radius:100%;
+}
+div.row {
+	margin: 0;
+	box-sizing: border-box;
+	[class^="col-"] {
+		box-sizing: border-box;
+		padding: 0;
+	}
+}
+.select-menu {
+	min-width: 95px;
+}
+.timetable {
+	background-color: #FFF;
+}

@@ -16,9 +16,12 @@ const configRouter = (options) => {
            next()
        } else if (!store.getters.userInfo) {// 内存中不存在用户，需要获取登录用户信息
              store.dispatch('AC_GetUserInfo').then(user => {
+               console.log("AC_GenerateRoutes初始",user);
              return store.dispatch('AC_GenerateRoutes', user)
            }).then((routers) => {
+             console.log("根据路由跳转：",routers);
              router.addRoutes(routers)
+             console.log("根据路由跳转至：",...to);
              next({...to, replace: true})
            }).catch(err => {
              console.log("AC_Redirect2Login", err);

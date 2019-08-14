@@ -1,0 +1,16 @@
+.view {
+	transition: all .5s ease;
+	.fixed-footer {
+		display: block;
+	}
+}
+.main-enter, .main-leave-active {
+	opacity: 0;
+	.fixed-footer {
+		display: none;
+	}
+	transform: translate3d(20px, 0, 0);
+}
+[v-cloak] {
+ 	display: none;
+}

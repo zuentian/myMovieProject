@@ -1,0 +1,146 @@
+.timetable-wrapper {
+
+	$line-color: #FDFDFD;
+	$header-height: 42px;
+	$grid-height: 90px;
+	$grid-line-color: #E5E5E5;
+	$asideWidth: 60px;
+
+	.tool-bar {
+		text-align: center;
+		> li {
+			display: inline-block;
+			margin-left: 20px;
+			> label {
+				cursor: pointer;
+				color: #555;
+			}
+		}
+	}
+
+	li {
+		list-style: none;
+	}
+
+	.timetable {
+		@include clearfix();
+		aside {
+			float: left;
+			width: $asideWidth;
+			margin-top: $header-height;
+			padding-right: 15px;
+			box-sizing: border-box;
+			text-align: right;
+			> ul {
+				li {
+					list-style: none;
+					height: $grid-height;
+					line-height: $grid-height;
+				}
+			}
+		}
+		ul.header {
+			height: $header-height;
+			@include flex-container();
+			> li {
+				display: inline-block;
+				list-style: none;
+                font-size: 20px;
+                letter-spacing: 1.42px;
+				text-align: center;
+				> span {
+					display: block;
+                    font-size: 19px;
+                    color: #6f7276;
+				}
+				&.flex {
+					@include flex(1);
+					min-width: 106px!important;
+				}
+			}
+		}
+		.time-grid {
+			@include flex-container();
+			height: $grid-height;
+			> li {
+				list-style: none;
+				position: relative;
+				border-bottom: 1px dashed $grid-line-color;
+				border-right: 1px solid $grid-line-color;
+				box-sizing: border-box;
+				&:last-of-type {
+					border-right: none;
+				}
+				&:after,
+				&:before {
+					content: "";
+				    position: absolute;
+				    z-index: 1;
+				    left: 0;
+				    top: 0;
+				    right: 0;
+				    bottom: 0;
+				}
+				&:before {
+					background-image: linear-gradient(to bottom, $grid-line-color 1px, transparent 1px);
+					background-position: 0 -45px;
+				}
+				&.flex {
+					@include flex(1);
+					min-width: 106px!important;
+				}
+			}
+			&:last-of-type {
+				li {
+					border-bottom: none;
+				}
+			}
+			&:nth-child(odd) {
+				li {
+					background: #fafafa;
+				}
+			}
+		}
+	}
+	.lesson-list {
+		position: relative;
+		.lesson {
+			position: absolute;
+			z-index: 2;
+			box-sizing: border-box;
+			padding: 10px 3px;
+			border-top: 1px solid #FFF;
+			border-bottom: 1px solid #FFF;
+			color: #fff;
+			font-size: 12px;
+			&.class-on {
+				background: $brand;
+			}
+			&.class-off {
+				background: $orange;
+			}
+			&.min {
+				@include text-overflow();
+			}
+			> i {
+				font-style: normal;
+				display: block;
+				margin: 5px 0;
+			}
+			> span {
+				position: absolute;
+				z-index: 200;
+				right: -3px;
+				top: 1px;
+				text-align: center;
+				color: #cb3536;
+			}
+		}
+	}
+	.scroll-wrapper {
+		position: relative;
+		overflow-x: auto;
+		margin-left: $asideWidth;
+		min-width: 742px;
+	}
+}

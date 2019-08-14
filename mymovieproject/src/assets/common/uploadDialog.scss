@@ -1,0 +1,145 @@
+.upload-dialog {
+	.step {
+		@include clearfix;
+		> li {
+			float: left;
+			width: 33%;
+			list-style: none;
+			&:nth-child(2) {
+				text-align: center;
+			}
+			&:nth-child(3) {
+				text-align: right;
+			}
+		}
+	}
+	li {
+		list-style: none;
+	}
+	p {
+		color: $gray-999;
+	}
+	.upload-progress {
+		@include flex-container;
+		-webkit-align-items: center;
+		align-items: center;
+		$cicle-size: 40px;
+		> .num {
+			@include circle($cicle-size, $gray-999, #f2f2f2);
+			&.active {
+				background: $brand;
+				color: #fff;
+			}
+		}
+		$item-height: 8px;
+		.progress-item {
+			@include flex(1);
+			position: relative;
+			width: 200px;
+			height: $item-height;
+			background: #f2f2f2;
+			> span {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 50%;
+				height: $item-height;
+				background: $brand;
+				&.full {
+					width: 100%;
+				}
+			}
+		}
+	}
+	.upload-notice {
+		margin-top: 20px;
+		h3 {
+			font-size: 15px;
+			margin-bottom: 5px;
+			> span {
+				font-size: 20px;
+				color: $brand;
+				margin-right: 5px;
+			}
+			> a {
+				margin: 0 2px;
+				font-weight: normal;
+			}
+		}
+		>  li {
+			margin-bottom: 20px;
+			ol {
+				margin-left: 20px;
+				> li {
+					list-style: decimal;
+					color: $gray-999;
+				}
+			}
+		}
+		.upload-body {
+			padding-left: 20px;
+		}
+		.import-type-select {
+			li {
+				display: inline-block;
+				margin-right: 10px;
+				input {
+					margin-right: 3px;
+				}
+			}
+		}
+	}
+
+	.process-progress {
+		padding: 40px 0;
+		> li {
+			background: #ddd;
+			position: relative;
+			height: 30px;
+			> span {
+				position: absolute;
+				width: 0%;
+				height: 30px;
+				top: 0;
+				left: 0;
+				background: $brand;
+			}
+		}
+	}
+	.complete {
+		padding: 40px 0;
+		color: #gray-999;
+		span {
+			margin: 0 3px;
+			vertical-align: middle;
+		}
+		.complete-sign {
+			margin-top: 50px;
+			color: $gray-999;
+			text-align: center;
+			span {
+				font-size: 30px;
+			}
+		}
+	}
+
+	.file-name {
+		background: #FFF;
+		border: 1px solid #DDD;
+		width: 280px;
+		@include text-overflow;
+		padding: 5px;
+		height: 23px;
+		line-height: 23px;
+		position: relative;
+		.icon-times {
+			position: absolute;
+			right: 6px;
+			top: 9px;
+			cursor: pointer;
+			&:hover {
+				color: $gray-999;
+			}
+		}
+	}
+}

@@ -1,0 +1,24 @@
+[v-cloak] {
+	display: none;
+	visibility: hidden;
+}
+
+.expand-enter-active, .expand-leave-active {
+  transition: all .3s ease;
+  height: auto;
+  background-color: #eee;
+}
+.expand-enter, .expand-leave-active{
+	height: 0;
+	opacity: 0;
+}
+
+
+.right-enter-active, .right-leave-active {
+ 	transition: all .3s ease;
+ 	right: 10px;
+}
+
+.right-enter, .right-leave-active {
+	right: -1000px;
+}

@@ -1,0 +1,70 @@
+
+@import './common/mixin';
+@import './common/vue';
+@import './common/topNav';
+@import './common/form';
+@import './common/view';
+@import './common/table';
+@import './common/hover';
+@import './common/global';
+
+
+// @import '../../modules/styles';
+
+.main {
+	margin-left: 192px;
+	height: 100%;
+	background: $brand-base;
+	padding-top: 50px;
+	&-content {
+		padding-bottom: 10px;
+	}
+	-webkit-tap-highlight-color: transparent;
+}
+
+.view {
+ 	transition: all .3s ease;
+}
+.main-enter, .main-leave-active {
+  	opacity: 0;
+  	transform: translate3d(20px, 0, 0);
+}
+[v-cloak] {
+ 	display: none;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-row-center-vertical {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
