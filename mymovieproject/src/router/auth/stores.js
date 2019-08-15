@@ -41,7 +41,6 @@ const actions = {
     })
   },
   AC_LOGOUT({dispatch,commit}){
-    console.log("aalallalalal");
       return logout().then(response=>{
       commit("CLEAR_USER_INFO");
     })
