@@ -1,0 +1,94 @@
+#bind-message-box {
+    .modal-header {
+        @include rem(margin, 0px 42px);
+        @include rem(padding, 20px 0px);
+        .modal-title {
+            // @include rem(font-size, 16px);
+            // @include rem(line-height, 22px);
+            font-size: 1.6rem;
+            line-height: 2.2rem;
+            color: #4a4a4a;
+            text-align: center;
+        }
+    }
+    .modal-dialog {
+        @include rem(margin, 149px auto);
+        width: 28rem;
+        .modal-content {
+            box-shadow: none;
+            border: hidden;
+        }
+    }
+    .modal-body {
+        margin: 3rem;
+        height: 7rem;
+        // @include rem(margin, 26px 25px 29px 25px);
+        @include rem(font-size, 22px);
+        @include rem(line-height, 30px);
+        padding: 0;
+        color: #4a4a4a;
+        text-align: center;
+        display: flex;
+        display: -webkit-flex;
+        justify-content: space-between;
+        .column-look {
+            flex: 1;
+            -webkit-flex: 1;
+            height: 7rem;
+            max-width: 9rem;
+            font-size: 1.5rem;
+            color: #4a4a4a;
+            img {
+                width: 8rem;
+                height: 4rem;
+            }
+        }
+        .column-bind {
+            flex: 1;
+            -webkit-flex: 1;
+            height: 7rem;
+            max-width: 3rem;
+            line-height: 7rem;
+        }
+        .column-wechat {
+            img {
+                width: 4rem;
+                height: 4rem;
+            }
+            flex: 1;
+            -webkit-flex: 1;
+            height: 7rem;
+            max-width: 6rem;
+            font-size: 1.5rem;
+            color: #4a4a4a;
+        }
+    }
+    .modal-footer {
+        text-align: center;
+        @include rem(margin, 0 42px);
+        @include rem(padding, 0 0 10px 0);
+        .info {
+            color: #9b9b9b;
+            height: 5.7rem;
+            line-height: 5.7rem;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        .btn {
+            @include rem(border-radius, 5px);
+            @include rem(font-size, 17px);
+            @include rem(line-height, 40px);
+            @include rem(width, 125px);
+            border-width: 0;
+            padding: 0;
+        }
+        .btn.btn-gray {
+            @include rem(margin, 0 8px 0 -42px);
+            background: #e7e7e7;
+            color: #9b9b9b;
+        }
+        .btn.btn-primary {
+            @include rem(margin, 0 -42px 0 0);
+        }
+    }
+}

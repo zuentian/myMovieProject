@@ -1,0 +1,87 @@
+/**
+ * @file mixin
+ * @author lixiaobin
+ */
+
+@mixin flex-container() {
+    display: -webkit-box;
+    display: -ms-box;
+    display: -moz-box;
+    display:  box;
+
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: -moz-flex;
+    display: flex;
+}
+@mixin flex($column) {
+    -webkit-box-flex: $column;
+    -webkit-flex: $column;
+    -ms-box-flex: $column;
+    -moz-box-flex: $column;
+            box-flex: $column;
+            flex: $column;
+}
+@mixin center() {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+         -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+@mixin list-items($count) {
+    float: left;
+    width: 100%/$count;
+}
+@mixin circle($size, $txt-color, $bg-color) {
+    width: $size;
+    height: $size;
+    line-height: $size;
+    border-radius: 50%;
+    text-align: center;
+    color: $txt-color;
+    background: $bg-color;
+}
+@mixin vertical-align-txt($h) {
+    height: $h;
+    line-height: $h;
+}
+@function parseInt($n) {
+    @return $n / ($n * 0 + 1);
+}
+@mixin rem($property, $values) {
+    $px : ();
+    $rem: ();
+    $scale: 12;
+
+    @each $value in $values {
+
+        @if $value == 0 or $value == auto {
+            $px : append($px , $value);
+            $rem: append($rem, $value);
+        }
+
+        @else {
+            $unit: unit($value);
+            $val: parseInt($value);
+
+            @if $unit == "px" {
+                $px : append($px,  $value);
+                $rem: append($rem, ($val / $scale + rem));
+            }
+
+            @if $unit == "rem" {
+                $px : append($px,  ($val * $scale + px));
+                $rem: append($rem, $value);
+            }
+        }
+    }
+
+    @if $px == $rem {
+        #{$property}: $px;
+    } @else {
+        #{$property}: $px;
+        #{$property}: $rem;
+    }
+}

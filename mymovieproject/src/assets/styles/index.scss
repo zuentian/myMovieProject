@@ -1,2 +1,317 @@
 @import 'element-ui/lib/theme-chalk/index.css';
+@import 'vue2-animate/dist/vue2-animate.min.css';
+@import 'nprogress/nprogress.css';
+@import './icon-font.scss';
+@import './variables.scss';
+@import './mixin.scss';
+@import './transition.scss';
+@import './element-ui.scss';
+@import './sidebar.scss';
+@import './btn.scss';
+@import './main.scss';
 
+body {
+  margin: 0px;
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  // font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  font: 12px/1.5 'Hiragino GB',tahoma,arial,'Hiragino Sans GB',\5FAE\8F6F\96C5\9ED1,sans-serif;
+}
+
+label {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+#app{
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.padding-content {
+  padding: 4px 0;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: #1c9cdd;
+  text-decoration: none;
+}
+
+div:focus{
+  outline: none;
+ }
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.pr-5 {
+  padding-right: 5px;
+}
+
+.pl-5 {
+  padding-left: 5px;
+}
+
+.block {
+  display: block;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.inlineBlock {
+  display: block;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+code {
+  background: #eef1f6;
+  padding: 15px 16px;
+  margin-bottom: 20px;
+  display: block;
+  line-height: 36px;
+  font-size: 15px;
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  a {
+    color: #337ab7;
+    cursor: pointer;
+    &:hover {
+      color: rgb(32, 160, 255);
+    }
+  }
+}
+
+.warn-content{
+  background: rgba(66,185,131,.1);
+  border-radius: 2px;
+  padding: 16px;
+  padding: 1rem;
+  line-height: 1.6rem;
+  word-spacing: .05rem;
+  a{
+    color: #42b983;
+    font-weight: 600;
+  }
+}
+
+//main-container全局样式
+.app-container {
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.components-container {
+  margin: 30px 50px;
+  position: relative;
+}
+
+.pagination-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.text-center {
+  text-align: center
+}
+
+.sub-navbar {
+  height: 50px;
+  line-height: 50px;
+  position: relative;
+  width: 100%;
+  text-align: right;
+  padding-right: 20px;
+  transition: 600ms ease position;
+  background: linear-gradient(90deg, rgba(32, 182, 249, 1) 0%, rgba(32, 182, 249, 1) 0%, rgba(33, 120, 241, 1) 100%, rgba(33, 120, 241, 1) 100%);
+  .subtitle {
+    font-size: 20px;
+    color: #fff;
+  }
+  &.draft {
+    background: #d0d0d0;
+  }
+  &.deleted {
+    background: #d0d0d0;
+  }
+}
+
+.link-type,
+.link-type:focus {
+  color: #337ab7;
+  cursor: pointer;
+  &:hover {
+    color: rgb(32, 160, 255);
+  }
+}
+
+.filter-container {
+  padding-bottom: 10px;
+  .filter-item {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 10px;
+  }
+}
+
+//refine vue-multiselect plugin
+.multiselect {
+  line-height: 16px;
+}
+
+.multiselect--active {
+  z-index: 1000 !important;
+}
+
+button:disabled {
+  cursor: not-allowed
+}
+
+.circle-image {
+	border-radius: 50%;
+}
+form {
+	.vf-dirty {
+		&.vf-invalid {
+			border: 1px solid red;
+		}
+	}
+	.form-group {
+		float: left;
+		position: relative;
+		width: 50%;
+    padding: 0 20px;
+		box-sizing: border-box;
+    height: 70px;
+    margin-bottom: 20px;
+		> div {
+			display: inline-block;
+      position: relative;
+			// &.date {
+			// 	&:before {
+			// 		position: absolute;
+			// 		font-family: 'icomoon';
+			// 		right: 10px;
+			// 		top: 7px;
+			// 		font-size: 16px;
+			// 		content: "\e90a";
+			// 		color: #999;
+			// 	}
+			// }
+			&.time {
+				&:before {
+					position: absolute;
+					font-family: 'icomoon';
+					right: 10px;
+					top: 7px;
+					font-size: 18px;
+					content: "\e90a";
+					color: #999;
+				}
+			}
+		}
+		input {
+			background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      padding: 10px;
+		}
+
+		.normal {
+			width: 336px;
+		}
+		.small {
+			width: 100px;
+			margin-bottom: 3px;
+		}
+		.medium {
+			width: 170px;
+		}
+		input[disabled] {
+			background: #DDD;
+			cursor: not-allowed;
+		}
+		textarea {
+			height: 80px;
+			padding: 5px;
+			outline: none;
+			-webkit-appearance: none;
+			border: 1px solid #ddd;
+			width: 100%;
+			resize: none;
+		}
+		h3 {
+			font-weight: normal;
+			font-size: 14px;
+      color: #364150;
+      margin-bottom: 10px;
+			> a {
+				font-size: 14px;
+			}
+		}
+
+		label {
+			font-weight: normal;
+			&.required:before {
+				content: '*';
+				color: #f95710;
+				margin: 3px 2px 0 0;
+			}
+			> span {
+				color: #999;
+			}
+		}
+	}
+}
+.red {
+  color: red;
+}

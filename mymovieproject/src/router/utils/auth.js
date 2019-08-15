@@ -8,3 +8,7 @@ export function getToken(){
 export function setToken(token){
     return Cookies.set(TokenKey, token,0)//0是设置浏览器关闭之后，cookie清除
 }
+
+export function removeToken(){
+    return Cookies.remove(TokenKey);
+}

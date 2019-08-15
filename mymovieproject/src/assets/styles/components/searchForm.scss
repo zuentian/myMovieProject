@@ -1,0 +1,67 @@
+.search-form {
+    float: left;
+    .date-out {
+        position: relative;
+        float: left;
+        .date {
+            &:before {
+                border-top: 4px dashed;
+                border-top: 4px solid\9;
+                border-right: 4px solid transparent;
+                border-left: 4px solid transparent;
+                content: "";
+                position: absolute;
+                right: 20px;
+                top: 19px;
+            }
+        }
+    }
+    .form-control {
+        float: left;
+        width: 230px;
+        height: 28px;
+        line-height: 19px;
+        box-shadow: none;
+        border: 1px solid #CCC;
+        border-right: none;
+        border-radius: 4px 0px 0px 4px;
+    }
+    $button-size: 42px;
+    > button {
+        float: left;
+        border: 1px solid #CCC;
+        border-left: none;
+        outline: none;
+        width: $button-size;
+        height: $button-size;
+        line-height: $button-size;
+        padding-left: 0;
+        padding-right: 0;
+        background: #FFF;
+        border-radius: 0px 4px 4px 0px;
+        > span {
+            font-size: 16px;
+            color: #CCC;
+        }
+        &:active {
+            > span {
+                color: $gray-999;
+            }
+        }
+    }
+    .btn-group {
+        float: left;
+        > button {
+            height: 42px;
+            &.btn-default {
+                &:focus,
+                &:active,
+                &:hover {
+                    box-shadow: none;
+                    background: #FFF;
+                    border: 1px solid #DDD;
+                }
+            }
+        }
+    }
+}

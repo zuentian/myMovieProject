@@ -1,0 +1,73 @@
+.modal-header {
+    height: 55px;
+    line-height: 20px;
+    border-bottom: none;
+    padding: 0;
+    background:#f1f1f1;
+    border-radius: 4px;
+    text-align: center;
+    position: relative;
+    @include clearfix();
+    > h4 {
+        height: 20px;
+        line-height: 20px;
+        font-size: 20px;
+        margin-top: 19px;
+        position: relative;
+        display: inline-block;
+        font-weight: normal;
+        color: #6f7276;
+    }
+    > h3 {
+        font-size: 14px;
+        line-height: 42px;
+        padding: 0 5px;
+        color: #364150;
+    }
+    > span {
+        position: absolute;
+        right: 19px;
+        top: 19px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: bold;
+        color: #666;
+        &:hover {
+            color: #999;
+        }
+    }
+}
+
+.modal-footer {
+    .btn {
+        border: 1px solid $gray-border;
+        border-radius: 4px;
+        width: 138px;
+        height: 38px;
+    }
+    .btn-primary {
+        background: $brand-primary;
+    }
+    .btn-default {
+        color: #FFF;
+        background: $gray-light;
+        border: 1px solid $gray-border;
+    }
+}
+
+.modal-open {
+    .modal-tall {
+        overflow: hidden;
+        .modal-body {
+            overflow-y: auto;
+        }
+    }
+}
+
+.modal-content {
+    border-radius: 4px;
+    background: #f1f1f1;
+    box-shadow: none;
+}
+
+@import './fullModal';

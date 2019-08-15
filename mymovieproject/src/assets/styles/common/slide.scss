@@ -1,0 +1,29 @@
+.slide-enter-active, .slide-leave-active {
+	-webkit-transition: -webkit-transform .3s ease;
+	transition: -webkit-transform .3s ease;
+	transition: transform .3s ease;
+	transition: transform .3s ease,-webkit-transform .3s ease;
+	width: 100%
+}
+
+.slide-enter,.slide-leave-active  {
+	-webkit-transform: translateX(100%);
+	transform: translateX(100%);
+	.fixed-footer {
+		display: none;
+	}
+}
+.app-enter-active, .app-leave-active {
+	-webkit-transition: opacity .3s ease;
+	transition: opacity .3s ease;
+	.fixed-footer {
+		display: block;
+	}
+}
+
+.app-enter,.app-leave-active {
+	opacity: 0;
+	.fixed-footer {
+		display: none;
+	}
+}

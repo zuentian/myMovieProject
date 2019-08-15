@@ -1,5 +1,5 @@
 import {getCurrentUser,logout,register,login} from '../api'
-import {getToken,setToken} from '../utils'
+import {getToken,setToken,removeToken} from '../utils'
 
 const state = {
   token:null,//token的值
@@ -16,7 +16,7 @@ const mutations = {
     state.userInfo=payload;
   },
   CLEAR_USER_INFO(state,payload){
-    //removeToken()
+    removeToken()
     state.userInfo = null
   },
   UPDATE_TOKEN(state,payload){
@@ -41,6 +41,7 @@ const actions = {
     })
   },
   AC_LOGOUT({dispatch,commit}){
+    console.log("aalallalalal");
       return logout().then(response=>{
       commit("CLEAR_USER_INFO");
     })

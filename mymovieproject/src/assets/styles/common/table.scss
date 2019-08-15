@@ -1,0 +1,82 @@
+/**
+ * @file 表格
+ */
+table {
+    background: #FFF;
+}
+table.table {
+    margin-bottom: 0;
+    > tbody {
+        > tr {
+            th,
+            td {
+                text-align: center;
+                font-size: 1.4rem;
+                font-weight: normal;
+                border-top: none;
+                vertical-align: middle;
+            }
+            > th {
+                color: #666;
+                border-top: none;
+                background: #f6f7f9;
+            }
+        }
+    }
+}
+.table-out {
+    overflow: auto;
+    margin: 20px 30px;
+    border: 1px solid #CCC;
+
+    input[type="checkbox"] {
+        font-size: 30px;
+    }
+
+    .table-striped {
+        th {
+            padding: 0px;
+            max-height: 58px;
+            line-height: 58px;
+            font-size: 16px;
+            background: #f6f7f9;
+            white-space: nowrap;
+            border-top: 3px solid $brand-primary;
+            border-left: 1px solid #DDD;
+            padding: 0 5px;
+            &:first-child {
+                border-left: 0;
+            }
+        }
+        td {
+            >table {
+                background: none;
+                margin-bottom: 0px;
+                border-collapse: collapse;
+                border-spacing: 0;
+                >td {
+                    border:  none;
+                }
+            }
+        }
+        padding: 0px;
+        max-height: 50px;
+        line-height: 50px;
+    }
+}
+
+.process-cell {
+    font-size: 12px;
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    background: $brand;
+    color: #FFF;
+    > span {
+        vertical-align: middle;
+    }
+}

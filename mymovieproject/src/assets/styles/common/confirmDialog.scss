@@ -1,0 +1,51 @@
+#vue-ui-confirm {
+	.icon-info-circle {
+		color: #c7254e;
+		margin-right: 8px;
+		font-size: 16px;
+		margin-top: 2px;
+		float: left;
+	}
+	.confirm-content {
+		overflow: hidden;
+		border-top-width: 0.1rem;
+		border-top-style: solid;
+		border-top-color: rgb(240, 240, 240);
+	}
+	.el-dialog {
+		@include center;
+		min-width: 30rem;
+		width: 30%;
+		-webkit-transform: translate(-50%, -50%) !important;
+		-ms-transform: translate(-50%, -50%) !important;
+		-o-transform: translate(-50%, -50%) !important;
+		transform: translate(-50%, -50%) !important;
+		position: absolute;
+		margin-top: 0!important;
+	}
+	.el-dialog__header {
+		padding: 1rem;
+		text-align: center;
+		background: #FFF;
+		margin-bottom: 0;
+	}
+	.el-dialog__headerbtn {
+		display: none;
+	}
+	.el-dialog__body {
+		padding: 1.5rem;
+		text-align: center;
+		background: #FFF;
+	}
+	.el-dialog__footer {
+		text-align: center;
+		padding: 1.5rem;
+		border-top-width: 0.1rem;
+		border-top-style: solid;
+		border-top-color: rgb(240, 240, 240);
+		background: #FFF;
+		.btn {
+			width: 88px;
+		}
+	}
+}

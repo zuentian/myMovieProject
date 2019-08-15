@@ -1,0 +1,67 @@
+.show-detail {
+
+	> header {
+		@include flex-container();
+		@include clearfix();
+		background: #FFF;
+		margin: 30px 15px 28px 15px;
+        .flex-control {
+        	width: 450px;
+			h3 {
+				float: left;
+				margin: 42px 20px 0 0;
+				font-size: 20px;
+				text-align: left;
+				font-weight: lighter;
+				max-width: 330px;
+				> span {
+					display: block;
+					font-weight: normal;
+					font-size: 14px;
+					margin-top: 3px;
+					color: $gray-dark;
+				}
+			}
+			img {
+				float: left;
+				position: relative;
+				margin: 40px 19px 40px 20px;
+				width: 60px;
+				height: 60px;
+			}
+			> button {
+				position: absolute;
+				right: 30px;
+				top: 37px;
+			}
+        }
+		
+		ul  {
+			@include flex(1);
+			li {
+				display: inline-block;
+				margin: 14px 0px 14px 0px;
+				padding-bottom: 12px;
+				font-weight: bold;
+				border-left: 1px solid #e0e0e0;
+				height: 100px;
+				font-size: 18px;
+				text-align: center;
+				color: #555;
+				font-weight: lighter;
+				width: 24%;
+				> label {
+					display: block;
+					color: $gray-999;
+					font-size: 10px;
+				}
+				.label-control {
+                    margin-bottom: 20px;
+				}
+				&:last-of-type {
+					border-right: none;
+				}
+			}
+		}
+	}
+}

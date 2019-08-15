@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import createLogger from 'vuex/dist/logger'
 import { stores as auth } from './auth'
-
+import {stores as pages} from './pages'
 import { filterAsyncRouter } from './functions'
 import{constRouterMap,asyncRouterMap } from './routes'
 import { app, errorLog,tagsView } from './utils'
@@ -74,7 +74,8 @@ export const store = new Vuex.Store({
         auth,
         app,
         errorLog,
-        tagsView,
+        tagsView, 
+        pages,
     },
     //插件作用通常是用来监听每次 mutation 的变化，来做一些事情。
     plugins:debug?[createLogger()]:[]//为了打印日志
