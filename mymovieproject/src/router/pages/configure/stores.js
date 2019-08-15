@@ -1,26 +1,23 @@
-import {stores as configure} from './configure'
-const state={
+import {stores as User} from './user'
+
+const  state ={
 
 }
-
 const getters={
 
 }
-
 const mutations={
 
 }
 const actions={
 
 }
-
-export const stores={
+export const stores ={
     state,
     getters,
     mutations,
     actions,
     modules:{
-        configure
+        User,
     }
 }
-

@@ -1,13 +1,15 @@
 /* eslint-disable */
-
+//此处是校验该用户是否有权限
 export const compare = (resources, menuCode) => {
     if (!menuCode) return true
+   
     return resources.some(({code}) => menuCode == code)
   }
   
   export const hasPermission = ({ mobile, resources }, route) => { 
     if(mobile == '18888888888') return true
-    if (route.meta && route.meta.code) {
+    if (route.meta && route.meta.code) {    
+      console.log("resources,code",resources,route.meta.code);
       return compare(resources, route.meta.code)
     } else {
       return true
