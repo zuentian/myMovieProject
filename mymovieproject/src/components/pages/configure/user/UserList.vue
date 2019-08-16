@@ -7,11 +7,11 @@
         </div>
         <el-form class="filter-container">
             <el-select @change="fetchData" style="margin:0 30px;" v-model="filter.status" :placeholder="`${title}状态`">
-                <el-option label="全部" :value="-1">
+                <el-option label="全部" :value=-1>
                 </el-option>
-                <el-option label="禁用" :value="0">
+                <el-option label="禁用" :value="1">
                 </el-option>
-                <el-option label="启用" :value="1">
+                <el-option label="启用" :value="0">
                 </el-option>
             </el-select>
             <input-search style="max-width: 310px;" :placeholder="`请输入${title}名称`" v-model="filter.nameOrMobile" @change="handleFilter"></input-search>
@@ -21,7 +21,7 @@
                 <template slot-scope="scope">
                 <span v-if="item.type=='date'">{{scope.row[item.name] | date('yyyy-MM-dd hh:mm:ss')}}</span>
                 <span style="text-align: left;" v-else-if="item.type=='html'" v-html="scope.row[item.name]"></span>
-                <span v-else-if="item.name=='status'">{{scope.row[item.name]?'启用中':'禁用中'}}</span>
+                <span v-else-if="item.name=='status'">{{scope.row[item.name]=='0'?'启用中':'禁用中'}}</span>
                 <span v-else>{{scope.row[item.name]}}</span>
                 </template>
             </el-table-column>
@@ -35,7 +35,7 @@
                     </el-button>
                     <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item :command="{operate: 'modify', row: scope.row}">编辑</el-dropdown-item>
-                    <el-dropdown-item :command="{operate: 'update', row: scope.row}">{{scope.row.status?'禁用':'启用'}}</el-dropdown-item>
+                    <el-dropdown-item :command="{operate: 'update', row: scope.row}">{{scope.row.status==0?'禁用':'启用'}}</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
                 </template>
@@ -54,7 +54,7 @@
 import { default as tables } from './tables'
 import { mapActions } from 'vuex'
 import { InputSearch } from '../../../common'
-//import UserCreate from './UserCreate.vue'
+import UserCreate from './UserCreate.vue'
 //import UserModify from './UserModify.vue'
 export default {
     data(){
@@ -86,11 +86,12 @@ export default {
              //'AC_UpdateUser'
          ]),
          async fetchData(){
-              let {count, result} = await this.AC_SearchUser({
+              let {count, list} = await this.AC_SearchUser({
                   ...this.page,
                   ...this.filter
               })
-              this.list = result
+              this.list = list
+              console.log("查询结果",this.list);
               this.count = count
          },
          handleCurrentChange(val) {
@@ -105,27 +106,27 @@ export default {
              this.page.pageNum = 1
              this.fetchData()
          },
-        // handleCommand({operate, row}) {
-        //     switch(operate){
-        //         case 'modify':
-        //             this.id = row.id
-        //             this.showModify = true
-        //             break;
-        //         case 'update':
-        //             this.AC_UpdateUser({
-        //                 id: row.id,
-        //                 status: row['status'] == 0? 1: 0
-        //             }).then(this.fetchData)
-        //             break;
-        //     }
-        // }
+         handleCommand({operate, row}) {
+             switch(operate){
+                 case 'modify':
+                     this.id = row.id
+                     this.showModify = true
+                     break;
+                 case 'update':
+                     this.AC_UpdateUser({
+                         id: row.id,
+                         status: row['status'] == 0? 1: 0
+                     }).then(this.fetchData)
+                     break;
+             }
+         }
     },
     created(){
-        //this.fetchData()
+        this.fetchData()
     },
     components: {
-         InputSearch,
-        // UserCreate,
+        InputSearch,
+        UserCreate,
         // UserModify
     }
 }

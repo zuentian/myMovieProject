@@ -8,5 +8,5 @@ export { default as Hamburger } from './hamburger'
 export { default as ErrorLog } from './error-log'
 export { default as Screenfull } from './screenfull'
 export { default as ThemePicker } from './theme-picker'
-
+export { default as Modal } from './modal'
 export {default as InputSearch} from './input-search'
