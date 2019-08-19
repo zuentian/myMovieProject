@@ -1,5 +1,9 @@
-export default [{
-    name: 'name',
+export default [
+  {
+    name: 'userCode',
+    showName: '登录账号'
+  },{
+    name: 'userName',
     showName: '姓名'
   },{
     name: 'mobile',
@@ -8,12 +12,10 @@ export default [{
     name: 'status',
     showName: '状态'
   },{
-    name: 'createTime',
+    name: 'crtTime',
     showName: '创建时间',
-    type: 'date'
   },{
-    name: 'updateTime',
+    name: 'altTime',
     showName: '更新时间',
-    type: 'date'
   }]
   

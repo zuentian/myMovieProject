@@ -117,7 +117,7 @@ export default {
         this.loginForm.password=md5(this.loginForm.password)
       }
       this.$store.dispatch('AC_Login', {
-        username: this.loginForm.username,
+        userCode: this.loginForm.username,
         password: this.loginForm.password
       }).then(res => {
         this.$router.push({ path: '/' })
@@ -136,7 +136,7 @@ export default {
           this.loginForm.passwordRegister2=md5(this.loginForm.passwordRegister2)
         }
         this.$store.dispatch('AC_REGISTER', {
-          username: this.loginForm.usernameRegister,
+          userCode: this.loginForm.usernameRegister,
           password: this.loginForm.passwordRegister
         }).then(res => {
           this.$notify({title: '注册成功',message: '',type: 'success'});

@@ -6,12 +6,12 @@
             <el-button type="text" @click="showCreate=true">新增{{title}}<i class="el-icon-plus" style="margin-left:10px;"></i></el-button>
         </div>
         <el-form class="filter-container">
-            <el-select @change="fetchData" style="margin:0 30px;" v-model="filter.status" :placeholder="`${title}状态`">
-                <el-option label="全部" :value=-1>
-                </el-option>
-                <el-option label="禁用" :value="1">
-                </el-option>
-                <el-option label="启用" :value="0">
+            <el-select @change="fetchData" clearable  filterable  remote   :remote-method="dictStatusRemoteMethod"  :loading="dictStatusLoading" style="margin:0 30px;" v-model="filter.status" :placeholder="`${title}状态`">
+                <el-option
+                     v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
                 </el-option>
             </el-select>
             <input-search style="max-width: 310px;" :placeholder="`请输入${title}名称`" v-model="filter.nameOrMobile" @change="handleFilter"></input-search>
@@ -19,9 +19,9 @@
         <el-table style="width: 100%"  :data="list" element-loading-text="加载中" :empty-text="`暂无${title}数据`" border fit highlight-current-row>
             <el-table-column show-overflow-tooltip v-for="(item, index) in tables" align="center" :key="index" :prop="item.name" :label="item.showName" :width="item.width > 0 ? item.width : null">
                 <template slot-scope="scope">
-                <span v-if="item.type=='date'">{{scope.row[item.name] | date('yyyy-MM-dd hh:mm:ss')}}</span>
+                <span v-if="item.type=='date'">{{scope.row[item.name] }}</span>
                 <span style="text-align: left;" v-else-if="item.type=='html'" v-html="scope.row[item.name]"></span>
-                <span v-else-if="item.name=='status'">{{scope.row[item.name]=='0'?'启用中':'禁用中'}}</span>
+                <!-- <span v-else-if="item.name=='status'">{{scope.row[item.name]=="0"?'启用中':'禁用中'}}</span> -->
                 <span v-else>{{scope.row[item.name]}}</span>
                 </template>
             </el-table-column>
@@ -35,7 +35,9 @@
                     </el-button>
                     <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item :command="{operate: 'modify', row: scope.row}">编辑</el-dropdown-item>
+<!-- 
                     <el-dropdown-item :command="{operate: 'update', row: scope.row}">{{scope.row.status==0?'禁用':'启用'}}</el-dropdown-item>
+                     -->
                     </el-dropdown-menu>
                 </el-dropdown>
                 </template>
@@ -68,11 +70,14 @@ export default {
              },
              count: null,
              filter: {
-                 status: -1,
+                 status: "",
                  nameOrMobile: ""
              },
              showCreate: false,
-             showModify: false
+             showModify: false,
+             options:null,
+             dictStatusLoading:false,
+
         }
     },
     computed: {
@@ -91,7 +96,6 @@ export default {
                   ...this.filter
               })
               this.list = list
-              console.log("查询结果",this.list);
               this.count = count
          },
          handleCurrentChange(val) {
@@ -115,10 +119,13 @@ export default {
                  case 'update':
                      this.AC_UpdateUser({
                          id: row.id,
-                         status: row['status'] == 0? 1: 0
+                         //status: row['status'] == "0"? "1": "0"
                      }).then(this.fetchData)
                      break;
              }
+         },
+         dictStatusRemoteMethod(){
+             
          }
     },
     created(){
