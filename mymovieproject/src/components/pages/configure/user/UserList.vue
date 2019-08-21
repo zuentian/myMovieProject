@@ -6,13 +6,8 @@
             <el-button type="text" @click="showCreate=true">新增{{title}}<i class="el-icon-plus" style="margin-left:10px;"></i></el-button>
         </div>
         <el-form class="filter-container">
-            <el-select @change="fetchData" clearable  filterable  remote   :remote-method="dictStatusRemoteMethod"  :loading="dictStatusLoading" style="margin:0 30px;" v-model="filter.status" :placeholder="`${title}状态`">
-                <el-option
-                     v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
-                </el-option>
+            <el-select @change="fetchData" clearable  filterable  remote :loading="dictStatusLoading" style="margin:0 30px;" v-model="filter.status" :placeholder="`${title}状态`">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
             <input-search style="max-width: 310px;" :placeholder="`请输入${title}名称`" v-model="filter.nameOrMobile" @change="handleFilter"></input-search>
         </el-form>
@@ -21,7 +16,7 @@
                 <template slot-scope="scope">
                 <span v-if="item.type=='date'">{{scope.row[item.name] }}</span>
                 <span style="text-align: left;" v-else-if="item.type=='html'" v-html="scope.row[item.name]"></span>
-                <!-- <span v-else-if="item.name=='status'">{{scope.row[item.name]=="0"?'启用中':'禁用中'}}</span> -->
+                <span v-else-if="item.name=='status'">{{scope.row[item.name] | listFormatMap(options)}}</span>
                 <span v-else>{{scope.row[item.name]}}</span>
                 </template>
             </el-table-column>
@@ -88,7 +83,7 @@ export default {
     methods: {
          ...mapActions([
              'AC_SearchUser',
-             //'AC_UpdateUser'
+             'QueryDictByDictType'
          ]),
          async fetchData(){
               let {count, list} = await this.AC_SearchUser({
@@ -124,12 +119,19 @@ export default {
                      break;
              }
          },
-         dictStatusRemoteMethod(){
-             
+         async queryDictStatusMethod(){
+             this.dictStatusLoading=true;
+             let {list} =await this.QueryDictByDictType({
+                 dictType:'USERSTATUS'
+              })
+              this.options=list;
+              this.dictStatusLoading=false;
          }
     },
     created(){
-        this.fetchData()
+        this.queryDictStatusMethod();
+        this.fetchData();
+        
     },
     components: {
         InputSearch,

@@ -1,5 +1,5 @@
 
-import {searchUser,createUser} from '@/router/api'
+import {searchUser,createUser,queryDictByDictType} from '@/router/api'
 
 const actions={
     AC_SearchUser({dispatch,commit,state},params){
@@ -7,6 +7,9 @@ const actions={
     },
     AC_CreateUser({dispatch,commit,state},params){
         return createUser(params);
+    },
+    QueryDictByDictType({dispatch,commit,state},params){
+        return queryDictByDictType(params);
     }
 }
 

@@ -40,11 +40,9 @@
             </el-option>
           </el-select> -->
         </el-form-item>
-        <el-form-item label="用户状态">
-          <el-select multiple filterable remote v-model="form.status" placeholder="请选择"
-                     :remote-method="statusSearch" :loading="statusLoading" style="width: 100%;">
-                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-                </el-option>
+        <el-form-item label="用户状态" prop="status">
+          <el-select  filterable remote v-model="form.status"  :loading="statusLoading" style="width: 100%;">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
            </el-select>
         </el-form-item>
       </el-form>
@@ -90,17 +88,17 @@ export default {
            statusLoading:false,
            rules:{
                 userCode:[
-                   {required:true,message:"请输入登录账号",trigger:"blur"},
-                   {min:3,max:5,message:"长度在1到20个字符",trigger:"blur"}
+                   {required:true,message:"请输入登录账号",trigger:"blur"}
                 ],
                 userName:[
-                   {required:true,message:"请输入用户昵称",trigger:"blur"},
-                   {min:3,max:5,message:"长度在1到10个字符",trigger:"blur"}
+                   {required:true,message:"请输入用户昵称",trigger:"blur"}
                 ],
                 mobile:[{required:true,message:"请输入手机号",trigger:"blur"}],
                 password: [
-                    { required: true, message: "请输入用户密码", trigger: "blur" },
-                    { min: 6, max: 12, message: "长度在 6 到 12 个字符", trigger: "blur" }
+                    { required: true, message: "请输入用户密码", trigger: "blur" }
+                ],
+                status: [
+                    { required: true, message: "请选择用户状态", trigger: "blur" }
                 ]
            }
         }
@@ -123,14 +121,20 @@ export default {
         submit(){
 
         },
-        async statusSearch(query){
+        async statusSearch(){
             this.statusLoading=true;
-            let {list} =await this.AC_DICT_USERSTATUS({
+            let {list} =await this.QueryDictByDictType({
                 dictType:'USERSTATUS'
             })
             this.options=list;
             this.statusLoading=false;
-        }
+        },
+        ...mapActions([
+            'QueryDictByDictType'
+        ]),
+    },
+    created(){
+      this.statusSearch();
     },
     components:{
         Modal,

@@ -6,7 +6,7 @@ const handleError = function(err) {
 
 const extractData = function(res){
   return new Promise((resolve, reject)=>{
-    console.log("http拦截器之前的返回",res);
+    //console.log("http拦截器之前的返回",res);
     let {
       status,
       data,
@@ -25,7 +25,7 @@ const extractData = function(res){
       if(status !== 200) {
         reject(res)
       } else{
-        console.log("http拦截器之后的返回",data);
+        //console.log("http拦截器之后的返回",data);
         resolve(data)
         
       }

@@ -27,9 +27,9 @@ const mutations = {
 
 const actions = {
   AC_GetUserInfo({commit,state:{token}}){
-    console.log("AC_GetUserInfo token " ,getToken());
+    //console.log("AC_GetUserInfo token " ,getToken());
     return getCurrentUser({token:token||getToken()}).then(response=>{//获取当前用户信息
-      console.log("getCurrentUser",response);
+      //console.log("getCurrentUser",response);
       commit("GET_CURRENTUSER",response)
       return response;
     })
