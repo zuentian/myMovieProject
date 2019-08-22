@@ -1,4 +1,5 @@
 import {stores as User} from './user'
+import {stores as Dict} from './dict'
 
 const  state ={
 
@@ -19,5 +20,6 @@ export const stores ={
     actions,
     modules:{
         User,
+        Dict,
     }
 }

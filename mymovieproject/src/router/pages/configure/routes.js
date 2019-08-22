@@ -1,4 +1,5 @@
 import { routes as User } from "./user";
+import {routes as Dict} from "./dict";
 
 
 export const routes=[{
@@ -7,5 +8,6 @@ export const routes=[{
     meta:{title:'配置'},
     children:[
         ...User,
+        ...Dict,
     ]
 }]

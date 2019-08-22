@@ -88,7 +88,8 @@ export default {
            statusLoading:false,
            rules:{
                 userCode:[
-                   {required:true,message:"请输入登录账号",trigger:"blur"}
+                   {required:true,message:"请输入登录账号",trigger:"blur"},
+                   {min: 3, max: 5, message: "长度在 1 到 50 个字符", trigger: "blur" }
                 ],
                 userName:[
                    {required:true,message:"请输入用户昵称",trigger:"blur"}
@@ -119,7 +120,7 @@ export default {
             });
         },
         submit(){
-
+          
         },
         async statusSearch(){
             this.statusLoading=true;

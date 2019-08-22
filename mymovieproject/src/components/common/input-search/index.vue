@@ -1,5 +1,5 @@
 <template>
-  <el-input class="input-with-select" :placeholder="placeholder" v-model="p_value" @keyup.enter.native="handleChange" @change="handleChange">
+  <el-input class="input-with-select" :placeholder="placeholder" v-model="p_value" @keyup.enter.native="handleChange" >
     <el-button slot="append" icon="el-icon-search" @click.stop="handleChange"></el-button>
   </el-input>
 </template>
