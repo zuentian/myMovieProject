@@ -151,7 +151,7 @@ export default {
         dictType:this.dictType,
       }).then(res => {
         this.dictInfo=res.list;
-        this.total=res.total;
+        this.total=res.count;
         if(this.total>0){
             this.isShowPagination=true;
         }
@@ -165,18 +165,17 @@ export default {
       this.dialogVisible=true;
       this.dictInfoAdd={};
     },
-    submitForm(formName){
+    async submitForm(formName){
       this.loadingAdd=true;
-      this.$refs[formName].validate((valid) => {
+      await this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$http.post("/api/DictInfo/addDictInfo",{
-              dictInfoAdd:this.dictInfoAdd
+          this.$store.dispatch("AddDict",{
+            dictInfoAdd:this.dictInfoAdd,
           }).then(res=>{
             this.$notify({title: '添加成功',message: '',type: 'success'});
             this.dialogVisible=false;
             this.query(this.pageSize,this.currentPage);
           }).catch(err=>{
-              console.log(err);
           }).finally(() => {
               this.loadingAdd = false
           })
@@ -235,9 +234,9 @@ export default {
         this.loadingDictTypeContent=true;
         await this.$store.dispatch("GetDictTypeName",{
           dictType:this.dictInfoAdd.dictType
-        }).then(res=>{
-          if(res.body.dictTypeContent!=null&&res.body.dictTypeContent!=''){
-            this.dictInfoAdd.dictTypeContent=res.body.dictTypeContent;
+        }).then(dictTypeName=>{
+          if(dictTypeName!=null&&dictTypeName!=''){
+            this.dictInfoAdd.dictTypeName=dictTypeName;
           }
         }).catch(err=>{
         }).finally(() => {

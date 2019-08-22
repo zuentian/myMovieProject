@@ -10,3 +10,7 @@ export function queryDict(params){
 export function getDictTypeName(params){
     return Vue.http.post('/api/DictController/getDictTypeName',params||{})
 }
+
+export function addDict(params){
+    return Vue.http.post('/api/DictController/addDict',params||{})
+}

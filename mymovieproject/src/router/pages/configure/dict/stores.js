@@ -1,4 +1,4 @@
-import {queryDict,getDictTypeName} from '@/router/api'
+import {queryDict,getDictTypeName,addDict} from '@/router/api'
 
 const actions={
     QueryDict({dispatch,commit,state},params){
@@ -7,7 +7,9 @@ const actions={
     GetDictTypeName({dispatch,commit,state},params){
         return getDictTypeName(params);
     },
-
+    AddDict({dispatch,commit,state},params){
+        return addDict(params);
+    }
 }
 
 export const stores={
