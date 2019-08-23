@@ -8,6 +8,11 @@ export default {
         ...mapActions(["CreateUser"]),
         async submit(){
             this.form.password=md5(this.form.password);
+            if(this.form.sex!=null&&this.form.sex.length>0){
+                this.form.sex=this.form.sex[0];
+            }else{
+                this.form.sex=null;
+            }
             let vaild =await this.validate()
             if(vaild){
                 this.CreateUser({
@@ -16,8 +21,8 @@ export default {
                     this.$emit('success')
                     this.cancel()
                 }).catch((err)=>{
-                    //this.$store.commit('SHOW_ERROR_TOAST', err.data.message || err.data)        
-                    this.cancel();
+                    this.$store.commit('SHOW_ERROR_TOAST', err.data.message || err.data)        
+                    //this.cancel();
                 })
             }
         }

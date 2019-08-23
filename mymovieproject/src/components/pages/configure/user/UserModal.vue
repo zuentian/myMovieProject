@@ -16,6 +16,11 @@
         <el-form-item label="用户称号" prop="userNameBak">
           <el-input v-model="form.userNameBak"></el-input>
         </el-form-item>
+        <el-form-item label="用户性别" prop="sex">
+          <el-checkbox-group v-model="form.sex" :min="1" :max="1">
+            <el-checkbox v-for="sex in sexs" :label="sex.value" :key="sex.value">{{sex.label}}</el-checkbox>
+          </el-checkbox-group>
+        </el-form-item>
         <el-form-item label="用户手机" prop="mobile">
           <el-input v-model="form.mobile"></el-input>
         </el-form-item>
@@ -79,17 +84,19 @@ export default {
                userName:"",
                userNameBak:"",
                mobile:"",
+               sex:[],
                password:"",
                roleIds:[],
                status:"",
                
            },
+           sexs:null,
            options:null,
            statusLoading:false,
            rules:{
                 userCode:[
                    {required:true,message:"请输入登录账号",trigger:"blur"},
-                   {min: 3, max: 5, message: "长度在 1 到 50 个字符", trigger: "blur" }
+                   {min: 1, max: 50, message: "长度在 1 到 50 个字符", trigger: "blur" }
                 ],
                 userName:[
                    {required:true,message:"请输入用户昵称",trigger:"blur"}
@@ -130,12 +137,25 @@ export default {
             this.options=list;
             this.statusLoading=false;
         },
+        async sexsSearch(){
+            await this.$store.dispatch("QueryDictByDictType",{
+              dictType:"USERSEX"
+            }).then(res=>{
+              //let sexs=new Array();
+              //for(var i=0;i<res.list.length;i++){
+               // sexs.push(res.list[i].label);
+             // }
+              //this.sexs=sexs;
+              this.sexs=res.list;
+            })
+        },
         ...mapActions([
             'QueryDictByDictType'
         ]),
     },
     created(){
       this.statusSearch();
+      this.sexsSearch();
     },
     components:{
         Modal,

@@ -14,3 +14,14 @@ export function getDictTypeName(params){
 export function addDict(params){
     return Vue.http.post('/api/DictController/addDict',params||{})
 }
+
+export function queryDictByDictId(params){
+    return Vue.http.post('/api/DictController/queryDictByDictId',params||{})
+}
+
+export function editDictByDictId(params){
+    return Vue.http.post('/api/DictController/editDictByDictId',params||{})
+}
+export function deleteDictByDictId(params){
+    return Vue.http.post('/api/DictController/deleteDictByDictId',params||{})
+}

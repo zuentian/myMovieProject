@@ -1,4 +1,4 @@
-import {queryDict,getDictTypeName,addDict} from '@/router/api'
+import {queryDict,getDictTypeName,addDict,queryDictByDictId,editDictByDictId,deleteDictByDictId} from '@/router/api'
 
 const actions={
     QueryDict({dispatch,commit,state},params){
@@ -9,6 +9,15 @@ const actions={
     },
     AddDict({dispatch,commit,state},params){
         return addDict(params);
+    },
+    QueryDictByDictId({dispatch,commit,state},params){
+        return queryDictByDictId(params);
+    },
+    EditDictByDictId({dispatch,commit,state},params){
+        return editDictByDictId(params);
+    },
+    DeleteDictByDictId({dispatch,commit,state},params){
+        return deleteDictByDictId(params);
     }
 }
 

@@ -140,7 +140,9 @@ export default {
     ...mapActions([
       'QueryDict',
       'GetDictTypeName',
-
+      'QueryDictByDictId',
+      'EditDictByDictId',
+      'DeleteDictByDictId',
     ]),
     async query(pageSize,currentPage){
 
@@ -198,36 +200,36 @@ export default {
         this.currentPage=val;
         this.query(this.pageSize,this.currentPage);
     },
-    updateDictInfo(row){
+    async updateDictInfo(row){
       this.dialogVisibleEdit=true;
       this.loadingAdd=true;
-      this.$http.post(this.HOST+"/DictInfo/queryDictInfoByDictId",{
-                dictId:row.dictId,
-      }).then(res=>{
-        this.dictInfoEdit=res.body.dictInfo;
+      await this.$store.dispatch("QueryDictByDictId",{
+        dictId:row.dictId,
+      }).then(dictInfo=>{
+        this.dictInfoEdit=dictInfo;
       }).catch(err=>{
-          this.$store.commit('SHOW_ERROR_TOAST', err.body.message || err.body)    
+        this.$store.commit('SHOW_ERROR_TOAST', err.data.message || err.data)
+        this.dialogVisibleEdit=false;
       }).finally(() => {
-            this.loadingAdd = false
+        this.loadingAdd = false
       })
-
     },
-    deleteDictInfo(row){
-      this.$http.post(this.HOST+"/DictInfo/deleteDictInfoByDictId",{
-                dictId:row.dictId,
+    async deleteDictInfo(row){
+      await this.$store.dispatch("DeleteDictByDictId",{
+        dictId:row.dictId
       }).then(res=>{
         this.$notify({title: '删除成功',message: '',type: 'success'});
         this.query(this.pageSize,this.currentPage);
       }).catch(err=>{
-          this.$store.commit('SHOW_ERROR_TOAST', err.body.message || err.body)    
+          this.$store.commit('SHOW_ERROR_TOAST', err.data.message || err.data)    
       }).finally(() => {
       })
     },
     handleClose(done) {
-        // this.$confirm('确认关闭？')
-        //   .then(_ => {
+        //this.$confirm('确认关闭？')
+         // .then(_ => {
             done();
-        //  }).catch(_ => {});
+        //}).catch(_ => {});
     },
     async getDictTypeContent(){
       if(this.dictInfoAdd.dictType!=null&&this.dictInfoAdd.dictType!=''&&this.dictInfoAdd.dictType!=undefined){
@@ -244,18 +246,17 @@ export default {
         })
       }
     },
-    submitFormEdit(formName){
+    async submitFormEdit(formName){
       this.loadingEdit=true;
-      this.$refs[formName].validate((valid) => {
+      await this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$http.post("/api/DictInfo/editDictInfo",{
-              dictInfoEdit:this.dictInfoEdit
+          this.$store.dispatch("EditDictByDictId",{
+            dictInfoEdit:this.dictInfoEdit,
           }).then(res=>{
             this.$notify({title: '修改成功',message: '',type: 'success'});
             this.dialogVisibleEdit=false;
             this.query(this.pageSize,this.currentPage);
           }).catch(err=>{
-              console.log(err);
           }).finally(() => {
               this.loadingEdit = false
           })
