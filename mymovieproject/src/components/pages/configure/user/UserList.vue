@@ -44,7 +44,7 @@
         </div>
     </el-card>
     <user-create v-if="showCreate" :show.sync="showCreate" @success="fetchData"></user-create>
-    <user-modify v-if="showModify" :show.sync="showModify" :id.sync="id" @success="fetchData"></user-modify>
+    <user-modify v-if="showModify" :show.sync="showModify" :userId.sync="userId" @success="fetchData"></user-modify>
 </div>
 </template>
 <script>
@@ -52,11 +52,11 @@ import { default as tables } from './tables'
 import { mapActions } from 'vuex'
 import { InputSearch } from '../../../common'
 import UserCreate from './UserCreate.vue'
-//import UserModify from './UserModify.vue'
+import UserModify from './UserModify.vue'
 export default {
     data(){
         return {
-             id: 0,
+             userId: "",
              tables,
              list: [],
              page: {
@@ -108,7 +108,7 @@ export default {
          handleCommand({operate, row}) {
              switch(operate){
                  case 'modify':
-                     this.id = row.id
+                     this.userId = row.userId
                      this.showModify = true
                      break;
                  case 'update':
@@ -136,7 +136,7 @@ export default {
     components: {
         InputSearch,
         UserCreate,
-        // UserModify
+        UserModify
     }
 }
 </script>

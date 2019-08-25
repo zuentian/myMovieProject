@@ -21,10 +21,10 @@
     
     <el-table :data="dictInfo"   style="width: 100%" v-loading="loading" :row-style="{height:'0'}" :cell-style="{padding:'4px'}">
         <el-table-column type="index" > </el-table-column>
-        <el-table-column align="center" prop="dictType" label="数据字典类型" width="250"></el-table-column>
-        <el-table-column align="center" prop="dictTypeName" label="数据字典类型名称" width="250" v-loading="loadingDictTypeContent"></el-table-column>
-        <el-table-column align="center" prop="dictCode"  label="数据字典编码" width="200"></el-table-column> 
-        <el-table-column align="center" prop="dictValue"  label="数据字典数值" width="200" ></el-table-column>
+        <el-table-column align="center" prop="dictType" label="数据字典类型" min-width='100'></el-table-column>
+        <el-table-column align="center" prop="dictTypeName" label="数据字典类型名称" min-width='100' v-loading="loadingDictTypeContent"></el-table-column>
+        <el-table-column align="center" prop="dictCode"  label="数据字典编码" min-width='100'></el-table-column> 
+        <el-table-column align="center" prop="dictValue"  label="数据字典数值" min-width='100' ></el-table-column>
         <el-table-column fixed="right" align="center" label="操作" width="100">
         <template slot-scope="scope">
             <el-button @click="updateDictInfo(scope.row)"  type="text" size="small">编辑</el-button>

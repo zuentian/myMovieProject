@@ -1,7 +1,7 @@
 <template>
     <modal v-model="show">
         <div slot="modal-header">
-            <h4 v-if="id">编辑用户</h4>
+            <h4 v-if="userId!=''">编辑用户</h4>
             <h4 v-else>新增</h4>
             <span class="el-icon-close" title="关闭" @click.stop="cancel()"></span>
         </div>
@@ -53,7 +53,7 @@
       </el-form>
       
         <div slot="modal-footer">
-            <el-button type="primary" @click="submit()">{{id?"保存":"创建"}}</el-button>
+            <el-button type="primary" @click="submit()">{{userId!=''?"保存":"创建"}}</el-button>
             <el-button @click="cancel()">取消</el-button>
         </div>
 
@@ -71,23 +71,24 @@ export default {
             type:Boolean,
             default:false,
         },
-        id:{
-            type:Number,
-            default:0,
+        userId:{
+            type:String,
+            default:"",
             //twoWay:true
         }
     },
     data(){
         return{
            form:{
-               userCode:"",
-               userName:"",
-               userNameBak:"",
-               mobile:"",
-               sex:[],
-               password:"",
-               roleIds:[],
-               status:"",
+              userId:"",
+              userCode:"",
+              userName:"",
+              userNameBak:"",
+              mobile:"",
+              sex:[],
+              password:"",
+              roleIds:[],
+              status:"",
                
            },
            sexs:null,
@@ -141,11 +142,6 @@ export default {
             await this.$store.dispatch("QueryDictByDictType",{
               dictType:"USERSEX"
             }).then(res=>{
-              //let sexs=new Array();
-              //for(var i=0;i<res.list.length;i++){
-               // sexs.push(res.list[i].label);
-             // }
-              //this.sexs=sexs;
               this.sexs=res.list;
             })
         },

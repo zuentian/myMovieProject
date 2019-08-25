@@ -7,3 +7,9 @@ export function searchUser(params){
 export function createUser(params){
     return Vue.http.post('/api/UserInfoController/create',params||{})
 }
+export function queryUserByUserId(params){
+    return Vue.http.post("/api/UserInfoController/queryUserByUserId",params||{})
+}
+export function updateUserByUserId(params){
+    return Vue.http.post("/api/UserInfoController/updateUserByUserId",params||{})
+}

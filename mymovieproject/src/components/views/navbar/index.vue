@@ -18,7 +18,7 @@
       <el-dropdown class="avatar-container right-menu-item">
         <div v-if="userInfo" class="avatar-wrapper">
           <!-- <img class="user-avatar" :src="userInfo.avatar | compressImage(80,80)"> -->
-          <img class="user-avatar" :src="userInfo.userNameBak">
+          <img class="user-avatar" :src="userInfo.userPhotoUrl">
           <span>{{userInfo.userName||userInfo.userCode}}</span>
           <i class="el-icon-arrow-down"></i>
         </div>
