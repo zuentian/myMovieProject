@@ -1,5 +1,6 @@
 import { routes as User } from "./user";
 import {routes as Dict} from "./dict";
+import {routes as Role} from "./role"
 
 
 export const routes=[{
@@ -9,5 +10,6 @@ export const routes=[{
     children:[
         ...User,
         ...Dict,
+        ...Role,
     ]
 }]

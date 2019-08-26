@@ -13,3 +13,9 @@ export function queryUserByUserId(params){
 export function updateUserByUserId(params){
     return Vue.http.post("/api/UserInfoController/updateUserByUserId",params||{})
 }
+export function deleteUserByUserId(params){
+    return Vue.http.post("/api/UserInfoController/deleteUserByUserId",params||{})
+}
+export function updateUserToStatusByUserId(params){
+    return Vue.http.post("/api/UserInfoController/updateUserToStatusByUserId",params||{})
+}

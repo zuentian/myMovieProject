@@ -8,7 +8,7 @@
     <div slot="modal-body">
       <el-form ref="form" :model="form" :rules="rules" label-width="120px">
         <el-form-item label="登录账号" prop="userCode">
-          <el-input v-model="form.userCode"></el-input>
+          <el-input v-model="form.userCode" :disabled="userId!=''?true:false"></el-input>
         </el-form-item>
         <el-form-item label="用户昵称" prop="userName">
           <el-input v-model="form.userName"></el-input>
@@ -17,9 +17,9 @@
           <el-input v-model="form.userNameBak"></el-input>
         </el-form-item>
         <el-form-item label="用户性别" prop="sex">
-          <el-checkbox-group v-model="form.sex" :min="1" :max="1">
-            <el-checkbox v-for="sex in sexs" :label="sex.value" :key="sex.value">{{sex.label}}</el-checkbox>
-          </el-checkbox-group>
+          <el-radio-group v-model="form.sex" style="float: left;margin:10px 0px">
+              <el-radio v-for="sex in sexs" :label="sex.value" :key="sex.value">{{sex.label}}</el-radio>
+          </el-radio-group>
         </el-form-item>
         <el-form-item label="用户手机" prop="mobile">
           <el-input v-model="form.mobile"></el-input>
@@ -85,7 +85,7 @@ export default {
               userName:"",
               userNameBak:"",
               mobile:"",
-              sex:[],
+              sex:"",
               password:"",
               roleIds:[],
               status:"",

@@ -20,7 +20,7 @@
                 <span v-else>{{scope.row[item.name]}}</span>
                 </template>
             </el-table-column>
-            <el-table-column fixed="right" label="操作" width="100">
+            <el-table-column fixed="right" label="操作" width="200">
                 <template slot-scope="scope">
                 <el-dropdown trigger="click" @command="handleCommand">
                     <el-button type="primary" size="small">
@@ -30,9 +30,19 @@
                     </el-button>
                     <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item :command="{operate: 'modify', row: scope.row}">编辑</el-dropdown-item>
-<!-- 
-                    <el-dropdown-item :command="{operate: 'update', row: scope.row}">{{scope.row.status==0?'禁用':'启用'}}</el-dropdown-item>
-                     -->
+                    <el-dropdown-item :command="{operate: 'delete', row: scope.row}">删除</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+                <el-dropdown trigger="click" @command="handleCommand">
+                    <el-button type="primary" size="small">
+                    <span class="el-dropdown-link">
+                        变更<i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    </el-button>
+                    <el-dropdown-menu slot="dropdown"  >
+                         <el-dropdown-item :command="{operate: 'changeStatus', row: scope.row,options:optionsFilt(scope.row.status)[index]}"  
+                            v-for="(item,index) in optionsFilt(scope.row.status)" :key="index">{{item.label}}</el-dropdown-item>
+                          <!--v-for 比v-if优先级高，但是不建议两个同时使用，vscode编辑器会报错，虽然并不影响效果-->
                     </el-dropdown-menu>
                 </el-dropdown>
                 </template>
@@ -78,12 +88,13 @@ export default {
     computed: {
         title() {
             return this.$route.meta.title.replace('管理', '')
-        }
+        },
     },
     methods: {
          ...mapActions([
              'AC_SearchUser',
-             'QueryDictByDictType'
+             'QueryDictByDictType',
+             'DeleteUserByUserId'
          ]),
          async fetchData(){
               let {count, list} = await this.AC_SearchUser({
@@ -105,17 +116,32 @@ export default {
              this.page.pageNum = 1
              this.fetchData()
          },
-         handleCommand({operate, row}) {
+         handleCommand({operate, row,options}) {
              switch(operate){
                  case 'modify':
                      this.userId = row.userId
                      this.showModify = true
                      break;
-                 case 'update':
-                     this.AC_UpdateUser({
-                         id: row.id,
-                         //status: row['status'] == "0"? "1": "0"
-                     }).then(this.fetchData)
+                 case 'delete' :
+                     this.$store.dispatch("DeleteUserByUserId",{
+                        userId:row.userId
+                     }).then((res)=>{
+                         this.fetchData();
+                         this.$notify({title: '删除成功',message: '',type: 'success'});
+                     }).catch(err=>{
+                         this.$store.commit('SHOW_ERROR_TOAST', err.data.message || err.data);
+                     })
+                     break;
+                 case 'changeStatus':
+                     this.$store.dispatch("UpdateUserToStatusByUserId",{
+                         userId:row.userId,
+                         status:options.value,
+                     }).then((res)=>{
+                         this.fetchData();
+                         this.$notify({title: '变更'+options.label+'成功',message: '',type: 'success'});
+                     }).catch(err=>{
+                         this.$store.commit('SHOW_ERROR_TOAST', err.data.message || err.data);
+                     })
                      break;
              }
          },
@@ -126,6 +152,14 @@ export default {
               })
               this.options=list;
               this.dictStatusLoading=false;
+         },
+         optionsFilt(value){
+             
+             let optionfilt=this.options;
+             return optionfilt.filter(function (optionfilt) {
+                 
+                return optionfilt.value!=value;
+            })
          }
     },
     created(){

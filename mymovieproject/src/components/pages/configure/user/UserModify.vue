@@ -25,7 +25,11 @@ export default {
                    user:this.form,
                }).then(() => {
                    this.$emit('success')
+                   this.$notify({title: '保存成功',message: '',type: 'success'});
                    this.cancel()
+               }).catch((err)=>{
+                    this.$store.commit('SHOW_ERROR_TOAST', err.data.message || err.data);
+                    this.form.password="";  
                })
             }
         }

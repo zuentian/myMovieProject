@@ -1,5 +1,6 @@
 import {stores as User} from './user'
 import {stores as Dict} from './dict'
+import {stores as Role} from './role'
 
 const  state ={
 
@@ -21,5 +22,6 @@ export const stores ={
     modules:{
         User,
         Dict,
+        Role,
     }
 }
