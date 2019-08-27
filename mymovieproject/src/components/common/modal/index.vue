@@ -1,5 +1,6 @@
 <template>
     <el-dialog
+        :close-on-press-escape="false"
         @open="onDialogOpen"
         @close="onDialogClose"
         class="el-modal_wrapper"
@@ -44,6 +45,7 @@ export default {
     },
     data() {
         return {
+            
             p_value: this.value
         }
     },

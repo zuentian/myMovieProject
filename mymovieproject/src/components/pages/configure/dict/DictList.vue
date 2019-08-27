@@ -6,7 +6,7 @@
             <el-button type="danger" @click="addDictInfo">新增字典<i class="el-icon-plus" style="margin-left:10px;"></i></el-button>
         </div>
                 <el-row>
-                <el-col  :span="4" style="text-align:center">
+                <el-col  :span="3" style="text-align:left">
                     <span style="line-height:30px;font-size:16px;font-family:微软雅黑">数据字典类型：</span>
                 </el-col>
                 <el-col :span="5" >

@@ -5,5 +5,5 @@ export const routes=[{
         title:"角色管理",
         code:"menu:role-list",
     },
-    compontent:()=>import('@/components/pages/configure/role/RoleList.vue')
+    component:()=>import('@/components/pages/configure/role/RoleList.vue')
 }]
