@@ -6,7 +6,7 @@ export default {
     methods: {
         ...mapActions([
             "QueryRoleByRoleId",
-            "AC_ObtainRole",
+            "UpdateRoleByRoleId",
         ]),
         async fetchData() {
             await this.$store.dispatch("QueryRoleByRoleId",{
@@ -14,17 +14,15 @@ export default {
             }).then(role=>{
                 this.form=role;
             })
-            // let { name, status } = await this.AC_ObtainRole({
-            //     id: this.id
-            // })
         },
         async submit() {
             let valid = await this.validate()
             if(valid) {
-               this.AC_ModifyRole({
+               this.UpdateRoleByRoleId({
                    roleId: this.roleId,
-                   ...this.form
+                   status:this.form.status,
                }).then(() => {
+                   this.$notify({title: '保存成功',message: '',type: 'success'});
                    this.$emit('success')
                    this.cancel()
                })

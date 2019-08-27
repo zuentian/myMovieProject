@@ -13,6 +13,8 @@ export default {
         }).then(() => {
           this.$emit('success')
           this.cancel()
+        }).catch(err=>{
+          this.$store.commit('SHOW_ERROR_TOAST', err.data.message || err.data);
         })
       }
     }

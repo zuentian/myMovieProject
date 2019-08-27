@@ -1,14 +1,14 @@
 <template>
   <modal v-model="show">
     <div slot="modal-header">
-      <h4 v-if="id">编辑角色</h4>
+      <h4 v-if="roleId!=''">编辑角色</h4>
       <h4 v-else>新增角色</h4>
       <span class="el-icon-close" title="关闭" @click.stop="cancel()"></span>
     </div>
     <div slot="modal-body">
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
           <el-form-item label="名称" prop="roleName">
-            <el-input placeholder="请输入名称" v-model="form.roleName"></el-input>
+            <el-input placeholder="请输入名称" v-model="form.roleName" :disabled="roleId!=''?true:false"></el-input>
           </el-form-item>
 
           <el-form-item label="权限" prop="permissionIds"> 
@@ -38,7 +38,7 @@
       </el-form>
     </div>
     <div slot="modal-footer">
-      <el-button type="primary" @click="submit()">{{id?"保存":"创建"}}</el-button>
+      <el-button type="primary" @click="submit()">{{roleId!=''?"保存":"创建"}}</el-button>
       <el-button @click="cancel()">取消</el-button>
     </div>
   </modal>
@@ -53,9 +53,9 @@ export default {
       type: Boolean,
       default: false,
     },
-    id: {
-      type: Number,
-      default: 0,
+    roleId: {
+      type: String,
+      default: "",
     }
   },
   data() {
@@ -63,6 +63,7 @@ export default {
       loading: false,
       permissions: [],
       form: {
+        roleId:"",
         roleName: null,
         status: null,
         permissionIds: []

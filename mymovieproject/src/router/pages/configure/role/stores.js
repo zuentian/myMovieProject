@@ -1,4 +1,4 @@
-import {queryRole,createRole} from '@/router/api'
+import {queryRole,createRole,queryRoleByRoleId,updateRoleByRoleId} from '@/router/api'
 const actions={
     QueryRole({dispatch,commit,state},params){
         return queryRole(params);
@@ -8,6 +8,9 @@ const actions={
     },
     QueryRoleByRoleId({dispatch,commit,state},params){
         return queryRoleByRoleId(params);
+    },
+    UpdateRoleByRoleId({dispatch,commit,state},params){
+        return updateRoleByRoleId(params);
     }
 }
 
