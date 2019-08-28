@@ -97,6 +97,8 @@ export default {
         ...mapActions([
             'QueryRole',
             'QueryDictByDictType',
+            'DeleteRoleByRoleId',
+            'UpdateRoleToStatusByRoleId',
         ]),
         async fetchData(){
             await this.$store.dispatch("QueryRole",{
@@ -135,17 +137,32 @@ export default {
                      this.showModify = true
                      break;
                  case 'delete' :
-                     this.$store.dispatch("DeleteUserByUserId",{
-                        roleId:row.roleId
-                     }).then((res)=>{
-                         this.fetchData();
-                         this.$notify({title: '删除成功',message: '',type: 'success'});
-                     }).catch(err=>{
-                         this.$store.commit('SHOW_ERROR_TOAST', err.data.message || err.data);
-                     })
-                     break;
+                    this.$confirm('此操作将会永久删除角色信息，请再次确认是否删除？', '确认信息', {
+                        distinguishCancelAndClose: true,
+                        confirmButtonText: '删除',
+                        cancelButtonText: '放弃删除'
+                    })
+                    .then(() => {
+                        this.$store.dispatch("DeleteRoleByRoleId",{
+                            roleId:row.roleId
+                        }).then((res)=>{
+                            this.fetchData();
+                            this.$notify({title: '删除成功',message: '',type: 'success'});
+                        }).catch(err=>{
+                            this.$store.commit('SHOW_ERROR_TOAST', err.data.message || err.data);
+                        })
+                    })
+                    .catch(action => {
+                    this.$message({
+                        type: 'info',
+                        message: action === 'cancel'
+                        ? '放弃删除并离开页面'
+                        : '停留在当前页面'
+                    })
+                    });
+                    break;
                  case 'changeStatus':
-                     this.$store.dispatch("UpdateUserToStatusByUserId",{
+                     this.$store.dispatch("UpdateRoleToStatusByRoleId",{
                          roleId:row.roleId,
                          status:options.value,
                      }).then((res)=>{

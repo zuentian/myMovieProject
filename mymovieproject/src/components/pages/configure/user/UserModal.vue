@@ -27,23 +27,10 @@
         <el-form-item label="用户密码" prop="password">
           <el-input type="password" v-model="form.password"></el-input>
         </el-form-item>
-        <el-form-item label="用户角色" prop="permissionIds"> 
-          <!-- <el-select 
-            v-model="form.roleIds"
-            multiple
-            filterable
-            remote
-            placeholder="请输入角色"
-            :remote-method="search"
-            :loading="loading"
-            style="width: 100%;">
-            <el-option
-              v-for="item in roles"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id">
-            </el-option>
-          </el-select> -->
+        <el-form-item label="用户角色" prop="roleIds"> 
+          <el-select v-model="form.roleIds" multiple filterable remote placeholder="请输入角色" :remote-method="searchRole" :loading="loading" style="width: 100%;">
+            <el-option  v-for="item in roles"  :key="item.roleId"  :label="item.roleName" :value="item.roleId"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="用户状态" prop="status">
           <el-select  filterable remote v-model="form.status"  :loading="statusLoading" style="width: 100%;">
@@ -74,11 +61,11 @@ export default {
         userId:{
             type:String,
             default:"",
-            //twoWay:true
         }
     },
     data(){
         return{
+           roles:null,
            form:{
               userId:"",
               userCode:"",
@@ -94,6 +81,7 @@ export default {
            sexs:null,
            options:null,
            statusLoading:false,
+           loading:false,
            rules:{
                 userCode:[
                    {required:true,message:"请输入登录账号",trigger:"blur"},
@@ -145,11 +133,23 @@ export default {
               this.sexs=res.list;
             })
         },
+        async searchRole(query){
+          this.loading = true;
+          await this.$store.dispatch("QueryRoleByStatusAndRoleName",{
+            roleName:query,
+            status:"0",//正常
+          }).then(list=>{
+            this.roles=list;
+          })
+          this.loading = false;
+        },
         ...mapActions([
-            'QueryDictByDictType'
+          'QueryDictByDictType',
+          'QueryRoleByStatusAndRoleName'
         ]),
     },
     created(){
+      this.searchRole();
       this.statusSearch();
       this.sexsSearch();
     },

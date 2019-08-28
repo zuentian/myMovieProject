@@ -30,7 +30,7 @@
                     </el-button>
                     <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item :command="{operate: 'modify', row: scope.row}">编辑</el-dropdown-item>
-                    <el-dropdown-item :command="{operate: 'delete', row: scope.row}">删除</el-dropdown-item>
+                    <el-dropdown-item :command="{operate: 'delete', row: scope.row}" @click="open">删除</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
                 <el-dropdown trigger="click" @command="handleCommand">
@@ -123,15 +123,30 @@ export default {
                      this.showModify = true
                      break;
                  case 'delete' :
-                     this.$store.dispatch("DeleteUserByUserId",{
+                    this.$confirm('此操作将会永久删除用户信息，请再次确认是否删除？', '确认信息', {
+                        distinguishCancelAndClose: true,
+                        confirmButtonText: '删除',
+                        cancelButtonText: '放弃删除'
+                    })
+                    .then(() => {
+                        this.$store.dispatch("DeleteUserByUserId",{
                         userId:row.userId
-                     }).then((res)=>{
-                         this.fetchData();
-                         this.$notify({title: '删除成功',message: '',type: 'success'});
-                     }).catch(err=>{
-                         this.$store.commit('SHOW_ERROR_TOAST', err.data.message || err.data);
-                     })
-                     break;
+                        }).then((res)=>{
+                            this.fetchData();
+                            this.$notify({title: '删除成功',message: '',type: 'success'});
+                        }).catch(err=>{
+                            this.$store.commit('SHOW_ERROR_TOAST', err.data.message || err.data);
+                        })
+                    })
+                    .catch(action => {
+                    this.$message({
+                        type: 'info',
+                        message: action === 'cancel'
+                        ? '放弃删除并离开页面'
+                        : '停留在当前页面'
+                    })
+                    });
+                    break;
                  case 'changeStatus':
                      this.$store.dispatch("UpdateUserToStatusByUserId",{
                          userId:row.userId,
@@ -160,7 +175,10 @@ export default {
                  
                 return optionfilt.value!=value;
             })
-         }
+         },
+         open() {
+            
+      }
     },
     created(){
         this.queryDictStatusMethod();

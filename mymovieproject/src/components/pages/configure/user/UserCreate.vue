@@ -11,7 +11,7 @@ export default {
             let vaild =await this.validate()
             if(vaild){
                 this.CreateUser({
-                    ...this.form
+                    user:this.form,
                 }).then(()=>{
                     this.$emit('success')
                     this.$notify({title: '创建成功',message: '',type: 'success'});
