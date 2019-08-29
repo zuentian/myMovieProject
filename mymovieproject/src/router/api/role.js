@@ -22,6 +22,6 @@ export function deleteRoleByRoleId(params){
 export function updateRoleToStatusByRoleId(params){
     return Vue.http.post("/api/RoleInfoController/updateRoleToStatusByRoleId",params||{});
 }
-export function queryRoleByStatusAndRoleName(params){
-    return Vue.http.post("/api/RoleInfoController/queryRoleByStatusAndRoleName",params||{});
+export function queryRoleByRoleNameConfuse(params){
+    return Vue.http.post("/api/RoleInfoController/queryRoleByRoleNameConfuse",params||{});
 }

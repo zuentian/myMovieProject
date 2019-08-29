@@ -135,9 +135,8 @@ export default {
         },
         async searchRole(query){
           this.loading = true;
-          await this.$store.dispatch("QueryRoleByStatusAndRoleName",{
-            roleName:query,
-            status:"0",//正常
+          await this.$store.dispatch("QueryRoleByRoleNameConfuse",{
+            roleName:query
           }).then(list=>{
             this.roles=list;
           })
@@ -145,7 +144,7 @@ export default {
         },
         ...mapActions([
           'QueryDictByDictType',
-          'QueryRoleByStatusAndRoleName'
+          'QueryRoleByRoleNameConfuse'
         ]),
     },
     created(){
